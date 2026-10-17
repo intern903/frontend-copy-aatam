@@ -1,0 +1,1812 @@
+{
+  "source": "values-qualities-discovery.html (prototype), exported as data only",
+  "expectedLength": 22,
+  "themes": [
+    {
+      "code": "CON",
+      "name": "close relationships and belonging",
+      "values": [
+        "Relationships",
+        "Friendship",
+        "Community",
+        "Home life",
+        "Affection",
+        "Presence",
+        "Cooperation/teamwork",
+        "partnership",
+        "Love & kindness"
+      ],
+      "defaultValue": "Community"
+    },
+    {
+      "code": "SRV",
+      "name": "helping others and leaving them better off",
+      "values": [
+        "Service",
+        "Altruism",
+        "Impact on others",
+        "Contribution & Uplifting Others",
+        "Nourishing Others",
+        "Guiding Others' Growth"
+      ],
+      "defaultValue": "Service"
+    },
+    {
+      "code": "FRE",
+      "name": "freedom to run your own life",
+      "values": [
+        "Control of time",
+        "Independence",
+        "Adventure",
+        "Creativity",
+        "Flexibility",
+        "Experience Curation",
+        "Gut-based Living",
+        "Autonomy",
+        "Joy",
+        "Space"
+      ],
+      "defaultValue": "Gut-based Living"
+    },
+    {
+      "code": "GRO",
+      "name": "learning and getting better",
+      "values": [
+        "Recognition",
+        "Mastery/achievement",
+        "Wisdom",
+        "Challenge/risk",
+        "Inquiry",
+        "Agency",
+        "Feedback",
+        "Learning & Curiosity",
+        "Proactive Ownership",
+        "Learning"
+      ],
+      "defaultValue": "Inquiry"
+    },
+    {
+      "code": "SEC",
+      "name": "safety, stability, and financial footing",
+      "values": [
+        "Privacy",
+        "Stability",
+        "Security",
+        "Money",
+        "Financial Abundance"
+      ],
+      "defaultValue": "Security"
+    },
+    {
+      "code": "CHR",
+      "name": "integrity and keeping your word",
+      "values": [
+        "Integrity",
+        "Honesty",
+        "Commitment",
+        "Ownership",
+        "Quality",
+        "Trust",
+        "Self-Authority"
+      ],
+      "defaultValue": "Commitment"
+    },
+    {
+      "code": "WEL",
+      "name": "health, peace, and enjoying life",
+      "values": [
+        "Good working/living conditions",
+        "Balance",
+        "Physical health",
+        "Satisfaction",
+        "Fun",
+        "Pleasure",
+        "Enjoyment",
+        "Connection with Nature",
+        "Personal discovery",
+        "Spirituality",
+        "Personal development",
+        "Flow & State of Being"
+      ],
+      "defaultValue": "Physical health"
+    },
+    {
+      "code": "PUR",
+      "name": "purpose, leadership, and making your mark",
+      "values": [
+        "Leadership",
+        "Meaningful work",
+        "Pioneering and New Concepts",
+        "Appearance",
+        "Aesthetics",
+        "Validation",
+        "Pride",
+        "Recognition & Impact"
+      ],
+      "defaultValue": "Leadership"
+    }
+  ],
+  "qualityCategories": [
+    {
+      "name": "Character & Values",
+      "qualities": [
+        "Authentic",
+        "Blunt",
+        "Candid",
+        "Careful",
+        "Committed",
+        "Compassionate",
+        "Consistent",
+        "Dedicated",
+        "Dependable",
+        "Detail-oriented",
+        "Determined",
+        "Ethical",
+        "Expressive",
+        "Fun",
+        "Generous",
+        "Helpful",
+        "Honest",
+        "Independent",
+        "Loyal",
+        "Modest",
+        "Organized",
+        "Outgoing",
+        "Patient",
+        "Persistent",
+        "Punctual",
+        "Reliable",
+        "Responsible",
+        "Sincere",
+        "Stable",
+        "Tolerant",
+        "Trustworthy",
+        "Truthful",
+        "Versatile"
+      ]
+    },
+    {
+      "name": "Energy & Drive",
+      "qualities": [
+        "Adaptable",
+        "Ambitious",
+        "Assertive",
+        "Cheerful",
+        "Confident",
+        "Courageous",
+        "Decisive",
+        "Dynamic",
+        "Energetic",
+        "Enthusiastic",
+        "Firm",
+        "Flow",
+        "Joyful",
+        "Motivated",
+        "Resilient",
+        "Results oriented",
+        "Sense of humor",
+        "Willing"
+      ]
+    },
+    {
+      "name": "Inner State",
+      "qualities": [
+        "Calm",
+        "Centered",
+        "Conscientious",
+        "Emotionally Resilient",
+        "Grounded",
+        "Pensive",
+        "Positive",
+        "Powerful",
+        "Present",
+        "Proud",
+        "Purposeful",
+        "Self-aware",
+        "Self-disciplined",
+        "Sensitive",
+        "Validated"
+      ]
+    },
+    {
+      "name": "Mind & Thinking",
+      "qualities": [
+        "Analytical",
+        "Attentive",
+        "Creative",
+        "Curious",
+        "Democratic",
+        "Disciplined",
+        "Fast learner",
+        "Flexible",
+        "Focused",
+        "Goal-oriented",
+        "Idealistic",
+        "Imaginative",
+        "Innovative",
+        "Instinctive",
+        "Intelligent",
+        "Intuitive",
+        "Logical",
+        "Methodical",
+        "Objective",
+        "Optimistic",
+        "Persuasive",
+        "Practical",
+        "Proactive",
+        "Rational",
+        "Realistic",
+        "Resourceful",
+        "Risk-taking",
+        "Spontaneous",
+        "Stubborn",
+        "Thorough",
+        "Thrifty",
+        "Understanding",
+        "Visionary"
+      ]
+    },
+    {
+      "name": "Relationships",
+      "qualities": [
+        "Empathetic",
+        "Collaborative",
+        "Friendly",
+        "Inspiring",
+        "Cooperative",
+        "Open-minded",
+        "Diplomatic",
+        "Caring",
+        "Respectful",
+        "Articulate",
+        "Talkative",
+        "Personable",
+        "Team player",
+        "Courteous",
+        "Supportive",
+        "Individualistic",
+        "Compatible",
+        "Naïve",
+        "Forthcoming",
+        "Tactful",
+        "People oriented",
+        "Guiding",
+        "Connected"
+      ]
+    }
+  ],
+  "stage1": [
+    {
+      "id": "s1a",
+      "label": "The free day",
+      "text": "Your Saturday plans get canceled and you suddenly have a completely open day. What do you most naturally do with it?",
+      "options": [
+        {
+          "text": "Text someone and make a plan to spend it together.",
+          "theme": "CON",
+          "values": [
+            "Friendship",
+            "Relationships"
+          ]
+        },
+        {
+          "text": "Head out with no plan and see where the day goes.",
+          "theme": "FRE",
+          "values": [
+            "Autonomy",
+            "Control of time"
+          ]
+        },
+        {
+          "text": "Start on something I have been wanting to learn or get better at.",
+          "theme": "GRO",
+          "values": [
+            "Learning & Curiosity",
+            "Mastery/achievement"
+          ]
+        },
+        {
+          "text": "Rest, move my body, get outside, reset.",
+          "theme": "WEL",
+          "values": [
+            "Balance",
+            "Physical health"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s1b",
+      "label": "The surprise money",
+      "text": "An unexpected $5,000 lands in your account. What is your first instinct?",
+      "options": [
+        {
+          "text": "Put it away where it keeps me safe, or pay down what I owe.",
+          "theme": "SEC",
+          "values": [
+            "Security",
+            "Stability"
+          ]
+        },
+        {
+          "text": "Give a good part of it to someone or something that needs it more than I do.",
+          "theme": "SRV",
+          "values": [
+            "Altruism",
+            "Impact on others"
+          ]
+        },
+        {
+          "text": "Spend it on an experience I will remember, a trip or a once-only event.",
+          "theme": "FRE",
+          "values": [
+            "Experience Curation",
+            "Adventure"
+          ]
+        },
+        {
+          "text": "Put it behind an idea or project I believe in.",
+          "theme": "PUR",
+          "values": [
+            "Pioneering and New Concepts",
+            "Meaningful work"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s1c",
+      "label": "The coworker's slip",
+      "text": "A coworker you like quietly tells you they made a mistake that will probably cost the team its deadline, and asks you not to say anything yet. What do you do?",
+      "options": [
+        {
+          "text": "Tell them they need to own it with the manager, and offer to go with them.",
+          "theme": "CHR",
+          "values": [
+            "Honesty",
+            "Ownership"
+          ]
+        },
+        {
+          "text": "Quietly pitch in so the deadline still holds.",
+          "theme": "CON",
+          "values": [
+            "Cooperation/teamwork",
+            "Friendship"
+          ]
+        },
+        {
+          "text": "Ask what happened and how they are doing first. The person matters more than the deadline.",
+          "theme": "SRV",
+          "values": [
+            "Nourishing Others",
+            "Love & kindness"
+          ]
+        },
+        {
+          "text": "Work out the risk to the project and to my own standing before I decide anything.",
+          "theme": "SEC",
+          "values": [
+            "Security",
+            "Stability"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s1d",
+      "label": "The good moment",
+      "text": "Your team gets praised for a project you mostly drove. Which moment would feel best?",
+      "options": [
+        {
+          "text": "My manager says in front of everyone that I led it.",
+          "theme": "PUR",
+          "values": [
+            "Recognition & Impact",
+            "Leadership"
+          ]
+        },
+        {
+          "text": "A teammate tells me privately that I made their job easier.",
+          "theme": "SRV",
+          "values": [
+            "Contribution & Uplifting Others",
+            "Impact on others"
+          ]
+        },
+        {
+          "text": "I realize I solved something hard that I was not sure I could.",
+          "theme": "GRO",
+          "values": [
+            "Challenge/risk",
+            "Mastery/achievement"
+          ]
+        },
+        {
+          "text": "It is over, I go home on time, and I finally breathe.",
+          "theme": "WEL",
+          "values": [
+            "Balance",
+            "Enjoyment"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s1e",
+      "label": "The rough week",
+      "text": "You are tired and behind on everything. What do you reach for first?",
+      "options": [
+        {
+          "text": "Someone who gets me: a call with a close friend or my partner.",
+          "theme": "CON",
+          "values": [
+            "Relationships",
+            "Affection"
+          ]
+        },
+        {
+          "text": "A plan: write it all down, sort it, get control back.",
+          "theme": "SEC",
+          "values": [
+            "Stability",
+            "Quality"
+          ]
+        },
+        {
+          "text": "Keep going, because people are counting on me and I gave my word.",
+          "theme": "CHR",
+          "values": [
+            "Commitment",
+            "Trust"
+          ]
+        },
+        {
+          "text": "A walk, a prayer, or a quiet moment to remember what really matters.",
+          "theme": "WEL",
+          "values": [
+            "Spirituality",
+            "Flow & State of Being"
+          ]
+        }
+      ]
+    }
+  ],
+  "stage2": {
+    "CON": {
+      "opener": {
+        "id": "con0",
+        "label": "The friend who is moving",
+        "text": "A good friend is moving to another city next month. What is your first instinct?",
+        "options": [
+          {
+            "text": "Plan a big send-off with everyone who loves them.",
+            "route": "B",
+            "values": [
+              "Community",
+              "Friendship"
+            ]
+          },
+          {
+            "text": "Block out one-on-one evenings before they go.",
+            "route": "A",
+            "values": [
+              "Presence",
+              "Relationships"
+            ]
+          },
+          {
+            "text": "Set up a regular call and a first visit so the friendship does not fade.",
+            "route": "B",
+            "values": [
+              "partnership",
+              "Commitment"
+            ]
+          },
+          {
+            "text": "Help them pack, settle in, and write them something heartfelt.",
+            "route": "A",
+            "values": [
+              "Love & kindness",
+              "Affection"
+            ]
+          }
+        ]
+      },
+      "followUpA": {
+        "id": "con1",
+        "label": "The hard evening",
+        "text": "Someone close to you has had a bad day and you are tired too. What do you do?",
+        "options": [
+          {
+            "text": "Sit with them, phones away, and not try to fix anything.",
+            "values": [
+              "Presence",
+              "Relationships"
+            ]
+          },
+          {
+            "text": "Make dinner or take over the chores so they can rest.",
+            "values": [
+              "Nourishing Others",
+              "Love & kindness"
+            ]
+          },
+          {
+            "text": "Set up a cozy ritual at home, a movie and blankets, so the house feels safe.",
+            "values": [
+              "Home life",
+              "Affection"
+            ]
+          },
+          {
+            "text": "Tell them out loud what they mean to me.",
+            "values": [
+              "Affection",
+              "Friendship"
+            ]
+          }
+        ]
+      },
+      "followUpB": {
+        "id": "con2",
+        "label": "The group tradition",
+        "text": "Your neighborhood or friend group wants to start something regular, like a monthly dinner or a walking group. What role do you find yourself in?",
+        "options": [
+          {
+            "text": "The organizer who gets everyone in one room.",
+            "values": [
+              "Community",
+              "Cooperation/teamwork"
+            ]
+          },
+          {
+            "text": "The one who makes sure the quiet people feel included.",
+            "values": [
+              "Friendship",
+              "Love & kindness"
+            ]
+          },
+          {
+            "text": "The one who splits up tasks so it runs smoothly and everyone pitches in.",
+            "values": [
+              "Cooperation/teamwork",
+              "partnership"
+            ]
+          },
+          {
+            "text": "The steady one who shows up every single time.",
+            "values": [
+              "Commitment",
+              "Relationships"
+            ]
+          }
+        ]
+      }
+    },
+    "SRV": {
+      "opener": {
+        "id": "srv0",
+        "label": "The struggling neighbor",
+        "text": "You find out a neighbor or colleague is quietly having a hard time. What do you actually do?",
+        "options": [
+          {
+            "text": "Show up with practical help right away: groceries, a ride, an hour of my time.",
+            "route": "A",
+            "values": [
+              "Service",
+              "Nourishing Others"
+            ]
+          },
+          {
+            "text": "Help without being seen, maybe a gift card left anonymously.",
+            "route": "A",
+            "values": [
+              "Altruism",
+              "Service"
+            ]
+          },
+          {
+            "text": "Sit with them and help them see a way forward.",
+            "route": "B",
+            "values": [
+              "Guiding Others' Growth",
+              "Presence"
+            ]
+          },
+          {
+            "text": "Get others involved so a whole circle of people supports them.",
+            "route": "B",
+            "values": [
+              "Contribution & Uplifting Others",
+              "Impact on others"
+            ]
+          }
+        ]
+      },
+      "followUpA": {
+        "id": "srv1",
+        "label": "Three free hours",
+        "text": "It is a weekend and you have three free hours. Which would leave you feeling most fulfilled?",
+        "options": [
+          {
+            "text": "Cooking a meal for someone who needs one.",
+            "values": [
+              "Nourishing Others",
+              "Love & kindness"
+            ]
+          },
+          {
+            "text": "Volunteering hands-on for a cause, for people I may never see again.",
+            "values": [
+              "Altruism",
+              "Service"
+            ]
+          },
+          {
+            "text": "Fixing or building something for a person who cannot do it themselves.",
+            "values": [
+              "Service",
+              "Impact on others"
+            ]
+          },
+          {
+            "text": "Spending time with someone who is alone.",
+            "values": [
+              "Love & kindness",
+              "Presence"
+            ]
+          }
+        ]
+      },
+      "followUpB": {
+        "id": "srv2",
+        "label": "The younger person's big choice",
+        "text": "A younger person, a junior colleague or a nephew, asks your advice on a big decision. How do you respond?",
+        "options": [
+          {
+            "text": "Ask questions until they find their own answer.",
+            "values": [
+              "Guiding Others' Growth",
+              "Wisdom"
+            ]
+          },
+          {
+            "text": "Share my own mistakes so they can skip a few.",
+            "values": [
+              "Contribution & Uplifting Others",
+              "Wisdom"
+            ]
+          },
+          {
+            "text": "Introduce them to someone who can open a door.",
+            "values": [
+              "Impact on others",
+              "Cooperation/teamwork"
+            ]
+          },
+          {
+            "text": "Check in over the coming months to see how it is going.",
+            "values": [
+              "Nourishing Others",
+              "Presence"
+            ]
+          }
+        ]
+      }
+    },
+    "FRE": {
+      "opener": {
+        "id": "fre0",
+        "label": "The week off",
+        "text": "You have a full week off. What does your ideal plan look like?",
+        "options": [
+          {
+            "text": "No itinerary at all. I decide each morning.",
+            "route": "A",
+            "values": [
+              "Gut-based Living",
+              "Flexibility"
+            ]
+          },
+          {
+            "text": "Somewhere completely new that stretches me.",
+            "route": "A",
+            "values": [
+              "Adventure",
+              "Challenge/risk"
+            ]
+          },
+          {
+            "text": "A hand-picked list of experiences: that restaurant, that hike, that show.",
+            "route": "B",
+            "values": [
+              "Experience Curation",
+              "Joy"
+            ]
+          },
+          {
+            "text": "Mostly unscheduled time at home to make things and think.",
+            "route": "B",
+            "values": [
+              "Space",
+              "Creativity"
+            ]
+          }
+        ]
+      },
+      "followUpA": {
+        "id": "fre1",
+        "label": "The \"my way\" moment",
+        "text": "Someone you respect tells you exactly how to do a task and you believe your way is better. What bothers you most?",
+        "options": [
+          {
+            "text": "Not being trusted to make the call myself.",
+            "values": [
+              "Autonomy",
+              "Self-Authority"
+            ]
+          },
+          {
+            "text": "Losing control over when and how I use my hours.",
+            "values": [
+              "Control of time",
+              "Flexibility"
+            ]
+          },
+          {
+            "text": "Having no room to improvise.",
+            "values": [
+              "Flexibility",
+              "Creativity"
+            ]
+          },
+          {
+            "text": "Having to depend on someone else to get it done.",
+            "values": [
+              "Independence",
+              "Autonomy"
+            ]
+          }
+        ]
+      },
+      "followUpB": {
+        "id": "fre2",
+        "label": "The open weekend",
+        "text": "A free weekend, and you happen to have a camera, a guitar, or a pile of craft supplies nearby. What happens?",
+        "options": [
+          {
+            "text": "I make something, anything, to see what comes out.",
+            "values": [
+              "Creativity",
+              "Space"
+            ]
+          },
+          {
+            "text": "I follow whatever sounds fun and let myself play.",
+            "values": [
+              "Joy",
+              "Fun"
+            ]
+          },
+          {
+            "text": "I try something I have never done, a little scary.",
+            "values": [
+              "Adventure",
+              "Challenge/risk"
+            ]
+          },
+          {
+            "text": "I spend it alone with plenty of room to think.",
+            "values": [
+              "Space",
+              "Privacy"
+            ]
+          }
+        ]
+      }
+    },
+    "GRO": {
+      "opener": {
+        "id": "gro0",
+        "label": "The thing I am bad at",
+        "text": "You discover you are quite bad at something that matters to you, like public speaking, a new software, or a sport. What do you do?",
+        "options": [
+          {
+            "text": "Dive in and study how it works until I really understand it.",
+            "route": "A",
+            "values": [
+              "Inquiry",
+              "Learning & Curiosity"
+            ]
+          },
+          {
+            "text": "Ask someone better to watch me and tell me honestly what to fix.",
+            "route": "A",
+            "values": [
+              "Feedback",
+              "Learning & Curiosity"
+            ]
+          },
+          {
+            "text": "Practice relentlessly until I am genuinely good.",
+            "route": "B",
+            "values": [
+              "Mastery/achievement",
+              "Quality"
+            ]
+          },
+          {
+            "text": "Put myself in a real, slightly scary situation and learn by doing.",
+            "route": "B",
+            "values": [
+              "Challenge/risk",
+              "Agency"
+            ]
+          }
+        ]
+      },
+      "followUpA": {
+        "id": "gro1",
+        "label": "The idea that contradicts you",
+        "text": "You read something that contradicts a belief you hold strongly. What happens?",
+        "options": [
+          {
+            "text": "I am fascinated and go down the rabbit hole for hours.",
+            "values": [
+              "Inquiry",
+              "Learning & Curiosity"
+            ]
+          },
+          {
+            "text": "I look for what wise people have concluded about it over time.",
+            "values": [
+              "Wisdom",
+              "Inquiry"
+            ]
+          },
+          {
+            "text": "I test it in my own life to see if it holds.",
+            "values": [
+              "Proactive Ownership",
+              "Agency"
+            ]
+          },
+          {
+            "text": "I talk to people who see it differently and ask for their views.",
+            "values": [
+              "Feedback",
+              "Learning & Curiosity"
+            ]
+          }
+        ]
+      },
+      "followUpB": {
+        "id": "gro2",
+        "label": "The 50-50 challenge",
+        "text": "A big, visible challenge lands on you, and you have about a 50 percent chance of failing. What is your reaction?",
+        "options": [
+          {
+            "text": "I raise my hand. This is how I grow.",
+            "values": [
+              "Challenge/risk",
+              "Agency"
+            ]
+          },
+          {
+            "text": "I take it if I can own the outcome fully, start to finish.",
+            "values": [
+              "Proactive Ownership",
+              "Agency"
+            ]
+          },
+          {
+            "text": "I take it and aim to be the best at it.",
+            "values": [
+              "Mastery/achievement",
+              "Quality"
+            ]
+          },
+          {
+            "text": "I take it if my effort will be noticed.",
+            "values": [
+              "Recognition",
+              "Mastery/achievement"
+            ]
+          }
+        ]
+      }
+    },
+    "SEC": {
+      "opener": {
+        "id": "sec0",
+        "label": "The 3 a.m. worry",
+        "text": "Which of these would be most likely to keep you up at night?",
+        "options": [
+          {
+            "text": "Losing my main income for six months.",
+            "route": "A",
+            "values": [
+              "Security",
+              "Stability"
+            ]
+          },
+          {
+            "text": "Never reaching the level of financial comfort I want.",
+            "route": "A",
+            "values": [
+              "Financial Abundance",
+              "Money"
+            ]
+          },
+          {
+            "text": "My routines and home life constantly changing.",
+            "route": "B",
+            "values": [
+              "Stability",
+              "Good working/living conditions"
+            ]
+          },
+          {
+            "text": "Parts of my private life becoming public.",
+            "route": "B",
+            "values": [
+              "Privacy",
+              "Security"
+            ]
+          }
+        ]
+      },
+      "followUpA": {
+        "id": "sec1",
+        "label": "The pay choice",
+        "text": "Two offers for the same job. Which would you take?",
+        "options": [
+          {
+            "text": "Lower pay, but guaranteed every month.",
+            "values": [
+              "Security",
+              "Stability"
+            ]
+          },
+          {
+            "text": "A modest base plus a big upside if things go well.",
+            "values": [
+              "Financial Abundance",
+              "Money"
+            ]
+          },
+          {
+            "text": "The one with the better working conditions and a comfortable commute, even if pay is average.",
+            "values": [
+              "Good working/living conditions",
+              "Satisfaction"
+            ]
+          },
+          {
+            "text": "Whichever frees me from money stress fastest, even if the work is dull.",
+            "values": [
+              "Money",
+              "Stability"
+            ]
+          }
+        ]
+      },
+      "followUpB": {
+        "id": "sec2",
+        "label": "The big weekend",
+        "text": "A friend invites you to a weekend with lots of unknowns: new people, shifting plans, shared rooms. What would make you say yes?",
+        "options": [
+          {
+            "text": "A clear plan I can count on.",
+            "values": [
+              "Stability",
+              "Quality"
+            ]
+          },
+          {
+            "text": "Knowing I will have my own room and time away from the group.",
+            "values": [
+              "Privacy",
+              "Space"
+            ]
+          },
+          {
+            "text": "Knowing it is safe and nobody will take advantage of anyone.",
+            "values": [
+              "Security",
+              "Trust"
+            ]
+          },
+          {
+            "text": "Knowing it is well run and comfortable.",
+            "values": [
+              "Good working/living conditions",
+              "Quality"
+            ]
+          }
+        ]
+      }
+    },
+    "CHR": {
+      "opener": {
+        "id": "chr0",
+        "label": "The promise and the better offer",
+        "text": "You told a friend you would help them move on Saturday. On Friday night a much better offer comes in. What do you do?",
+        "options": [
+          {
+            "text": "Honor my word. I said yes.",
+            "route": "A",
+            "values": [
+              "Commitment",
+              "Integrity"
+            ]
+          },
+          {
+            "text": "Tell them early and straight, apologize, and try to make it right.",
+            "route": "A",
+            "values": [
+              "Honesty",
+              "Ownership"
+            ]
+          },
+          {
+            "text": "Ask whether they would mind, and trust their answer.",
+            "route": "B",
+            "values": [
+              "Trust",
+              "Honesty"
+            ]
+          },
+          {
+            "text": "Decide based on what I believe is right, whatever anyone expects.",
+            "route": "B",
+            "values": [
+              "Self-Authority",
+              "Integrity"
+            ]
+          }
+        ]
+      },
+      "followUpA": {
+        "id": "chr1",
+        "label": "The private mistake",
+        "text": "You made a mistake at work or at home that only you know about. What do you do?",
+        "options": [
+          {
+            "text": "Admit it right away and fix it.",
+            "values": [
+              "Ownership",
+              "Honesty"
+            ]
+          },
+          {
+            "text": "Come clean about all of it, even where it is uncomfortable.",
+            "values": [
+              "Honesty",
+              "Integrity"
+            ]
+          },
+          {
+            "text": "Fix it, then change how I work so it cannot happen again.",
+            "values": [
+              "Quality",
+              "Ownership"
+            ]
+          },
+          {
+            "text": "Tell the affected person before they find out, to protect their trust in me.",
+            "values": [
+              "Trust",
+              "Honesty"
+            ]
+          }
+        ]
+      },
+      "followUpB": {
+        "id": "chr2",
+        "label": "The push",
+        "text": "Someone with influence over you, a boss or a family elder, pushes you toward a decision you disagree with. What do you do?",
+        "options": [
+          {
+            "text": "Say respectfully that this one is mine to decide, and I have decided.",
+            "values": [
+              "Self-Authority",
+              "Autonomy"
+            ]
+          },
+          {
+            "text": "Do what they ask, but do it as well as I do anything, because my name is on it.",
+            "values": [
+              "Quality",
+              "Commitment"
+            ]
+          },
+          {
+            "text": "Do a version I can stand behind fully, and refuse to compromise on what is right.",
+            "values": [
+              "Integrity",
+              "Honesty"
+            ]
+          },
+          {
+            "text": "Hear them out and trust they may see something I do not.",
+            "values": [
+              "Trust",
+              "Learning & Curiosity"
+            ]
+          }
+        ]
+      }
+    },
+    "WEL": {
+      "opener": {
+        "id": "wel0",
+        "label": "The Wednesday evening",
+        "text": "It is 6 p.m. on a Wednesday and you have some energy left. What pulls you?",
+        "options": [
+          {
+            "text": "A run, the gym, or a workout.",
+            "route": "A",
+            "values": [
+              "Physical health",
+              "Balance"
+            ]
+          },
+          {
+            "text": "A walk outside, watching the light change.",
+            "route": "A",
+            "values": [
+              "Connection with Nature",
+              "Enjoyment"
+            ]
+          },
+          {
+            "text": "Journaling or reading something reflective.",
+            "route": "B",
+            "values": [
+              "Personal discovery",
+              "Personal development"
+            ]
+          },
+          {
+            "text": "Quiet prayer, meditation, or stillness.",
+            "route": "B",
+            "values": [
+              "Spirituality",
+              "Flow & State of Being"
+            ]
+          }
+        ]
+      },
+      "followUpA": {
+        "id": "wel1",
+        "label": "Something has to give",
+        "text": "Your week is packed and something has to give. What do you refuse to sacrifice?",
+        "options": [
+          {
+            "text": "My sleep and exercise.",
+            "values": [
+              "Physical health",
+              "Balance"
+            ]
+          },
+          {
+            "text": "Time for something that is purely fun for me.",
+            "values": [
+              "Fun",
+              "Enjoyment"
+            ]
+          },
+          {
+            "text": "Evenings and weekends that are mine.",
+            "values": [
+              "Balance",
+              "Control of time"
+            ]
+          },
+          {
+            "text": "Ending the day feeling I did enough and did it well.",
+            "values": [
+              "Satisfaction",
+              "Quality"
+            ]
+          }
+        ]
+      },
+      "followUpB": {
+        "id": "wel2",
+        "label": "Fine but flat",
+        "text": "Life is fine but feels a little flat. What do you do?",
+        "options": [
+          {
+            "text": "Ask myself bigger questions about who I am and what I really want.",
+            "values": [
+              "Personal discovery",
+              "Inquiry"
+            ]
+          },
+          {
+            "text": "Start working on becoming a better version of myself: a habit, a book, a coach.",
+            "values": [
+              "Personal development",
+              "Learning & Curiosity"
+            ]
+          },
+          {
+            "text": "Look for something larger than me: nature, faith, a community of meaning.",
+            "values": [
+              "Spirituality",
+              "Community"
+            ]
+          },
+          {
+            "text": "Do the thing that puts me in the zone where time disappears.",
+            "values": [
+              "Flow & State of Being",
+              "Joy"
+            ]
+          }
+        ]
+      }
+    },
+    "PUR": {
+      "opener": {
+        "id": "pur0",
+        "label": "The group needs someone",
+        "text": "At a community event or work offsite, the group needs someone to take charge of a new initiative. What are you doing?",
+        "options": [
+          {
+            "text": "Stepping up to lead. People tend to follow me.",
+            "route": "A",
+            "values": [
+              "Leadership",
+              "Impact on others"
+            ]
+          },
+          {
+            "text": "Pitching an approach nobody has tried.",
+            "route": "A",
+            "values": [
+              "Pioneering and New Concepts",
+              "Challenge/risk"
+            ]
+          },
+          {
+            "text": "Helping only if the cause genuinely matters to me.",
+            "route": "B",
+            "values": [
+              "Meaningful work",
+              "Integrity"
+            ]
+          },
+          {
+            "text": "Hoping it goes well and that my part gets noticed.",
+            "route": "B",
+            "values": [
+              "Recognition & Impact",
+              "Validation"
+            ]
+          }
+        ]
+      },
+      "followUpA": {
+        "id": "pur1",
+        "label": "The project you shape",
+        "text": "You are asked to lead a project and can shape it. What do you most want to be true when it is done?",
+        "options": [
+          {
+            "text": "The team grew and would follow me anywhere.",
+            "values": [
+              "Leadership",
+              "Guiding Others' Growth"
+            ]
+          },
+          {
+            "text": "It did something that had not been done before.",
+            "values": [
+              "Pioneering and New Concepts",
+              "Creativity"
+            ]
+          },
+          {
+            "text": "It mattered to real people.",
+            "values": [
+              "Meaningful work",
+              "Impact on others"
+            ]
+          },
+          {
+            "text": "It hit or beat every measurable target.",
+            "values": [
+              "Mastery/achievement",
+              "Quality"
+            ]
+          }
+        ]
+      },
+      "followUpB": {
+        "id": "pur2",
+        "label": "The big event",
+        "text": "You are getting ready for an important event: an interview, a wedding, a big presentation. What matters most to you?",
+        "options": [
+          {
+            "text": "Looking sharp. How I present matters.",
+            "values": [
+              "Appearance",
+              "Pride"
+            ]
+          },
+          {
+            "text": "The space and details being beautiful and well designed.",
+            "values": [
+              "Aesthetics",
+              "Quality"
+            ]
+          },
+          {
+            "text": "Knowing I did it right and feeling proud afterward.",
+            "values": [
+              "Pride",
+              "Integrity"
+            ]
+          },
+          {
+            "text": "People telling me, “You nailed it.”",
+            "values": [
+              "Validation",
+              "Recognition & Impact"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "stage3": [
+    {
+      "id": "s3a",
+      "label": "The new job",
+      "text": "You are offered a new job. It is good in many ways, but you can only have one of these as its standout strength.",
+      "options": {
+        "CON": "A warm team where I make real friends.",
+        "SRV": "The work directly helps people.",
+        "FRE": "I control my hours and how I do the work.",
+        "GRO": "I learn something new every month.",
+        "SEC": "Stable pay and a predictable path.",
+        "CHR": "Leaders I respect who do what they say.",
+        "WEL": "A calm pace, and I go home with energy to spare.",
+        "PUR": "A title, visibility, and work I am proud to put my name to."
+      }
+    },
+    {
+      "id": "s3b",
+      "label": "The 80th birthday",
+      "text": "At your 80th birthday party, someone stands up and describes you. Which sentence would you most want to hear?",
+      "options": {
+        "CON": "“They made everyone around them feel loved and never alone.”",
+        "SRV": "“They left people better off than they found them.”",
+        "FRE": "“They lived entirely on their own terms.”",
+        "GRO": "“They never stopped learning, and they became the best at what they did.”",
+        "SEC": "“They built a safe, steady life for their family.”",
+        "CHR": "“They were a person of their word.”",
+        "WEL": "“They were at peace, and they enjoyed life.”",
+        "PUR": "“They built something that mattered and brought others along.”"
+      }
+    },
+    {
+      "id": "s3c",
+      "label": "The squeeze",
+      "text": "Life gets squeezed for a year and you can fully protect only one of these.",
+      "options": {
+        "CON": "My closest relationships.",
+        "SRV": "My ability to help others.",
+        "FRE": "My freedom to choose how I spend my time.",
+        "GRO": "My chance to learn and improve.",
+        "SEC": "My financial stability.",
+        "CHR": "My reputation for honesty.",
+        "WEL": "My health and peace of mind.",
+        "PUR": "My work and ambitions."
+      }
+    }
+  ],
+  "stage4": [
+    {
+      "id": "q1",
+      "label": "The oven dies",
+      "text": "You are hosting dinner for eight and the oven dies an hour before the guests arrive. What do you do?",
+      "options": [
+        {
+          "text": "Take a breath, regroup, and switch to takeout or the grill.",
+          "qualities": [
+            "Calm",
+            "Resourceful",
+            "Adaptable"
+          ]
+        },
+        {
+          "text": "Call a friend nearby and turn it into a team effort.",
+          "qualities": [
+            "Collaborative",
+            "Outgoing",
+            "Resourceful"
+          ]
+        },
+        {
+          "text": "Laugh about it with the guests when they arrive and make the night fun anyway.",
+          "qualities": [
+            "Sense of humor",
+            "Positive",
+            "Cheerful"
+          ]
+        },
+        {
+          "text": "Decide on a new menu in two minutes and tell everyone what to do.",
+          "qualities": [
+            "Decisive",
+            "Assertive",
+            "Results oriented"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q2",
+      "label": "The stalled group chat",
+      "text": "Everyone in the group chat has a different opinion on the trip and nothing has been decided for days. What do you do?",
+      "options": [
+        {
+          "text": "Build a simple plan with dates and costs and propose it.",
+          "qualities": [
+            "Organized",
+            "Methodical",
+            "Proactive"
+          ]
+        },
+        {
+          "text": "Ask each person privately what they really want and find the overlap.",
+          "qualities": [
+            "Diplomatic",
+            "Empathetic",
+            "Understanding"
+          ]
+        },
+        {
+          "text": "Say plainly, “We are going in circles. Pick A or B by Friday.”",
+          "qualities": [
+            "Candid",
+            "Assertive",
+            "Decisive"
+          ]
+        },
+        {
+          "text": "Stay relaxed. It will come together, and I am fine with most options.",
+          "qualities": [
+            "Flexible",
+            "Adaptable",
+            "Tolerant"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q3",
+      "label": "The blunt feedback",
+      "text": "Someone you respect tells you bluntly that your work was not good enough. What do you do?",
+      "options": [
+        {
+          "text": "Thank them, ask for specifics, and take notes.",
+          "qualities": [
+            "Self-aware",
+            "Open-minded",
+            "Fast learner"
+          ]
+        },
+        {
+          "text": "Feel the sting, then go back and check the work as objectively as I can.",
+          "qualities": [
+            "Objective",
+            "Thorough",
+            "Analytical"
+          ]
+        },
+        {
+          "text": "Feel it deeply and need a little time before I can respond.",
+          "qualities": [
+            "Sensitive",
+            "Pensive",
+            "Emotionally Resilient"
+          ]
+        },
+        {
+          "text": "Get determined to redo it and prove them wrong.",
+          "qualities": [
+            "Determined",
+            "Persistent",
+            "Motivated"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q4",
+      "label": "The long hold",
+      "text": "You have been on hold for 40 minutes to fix a billing error, and the representative is curt. What do you do?",
+      "options": [
+        {
+          "text": "Stay polite and patient. They may be having a hard day.",
+          "qualities": [
+            "Patient",
+            "Courteous",
+            "Tolerant"
+          ]
+        },
+        {
+          "text": "State calmly but firmly what I need and ask for a supervisor.",
+          "qualities": [
+            "Assertive",
+            "Firm",
+            "Persistent"
+          ]
+        },
+        {
+          "text": "Keep notes and follow up for as long as it takes to get it fixed.",
+          "qualities": [
+            "Persistent",
+            "Detail-oriented",
+            "Methodical"
+          ]
+        },
+        {
+          "text": "Tell them honestly how frustrating this is, but stay warm.",
+          "qualities": [
+            "Authentic",
+            "Expressive",
+            "Sincere"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q5",
+      "label": "The side project",
+      "text": "A friend invites you into a side project in an area you know little about. It could be great or it could flop. What do you do?",
+      "options": [
+        {
+          "text": "Dive in and learn as I go.",
+          "qualities": [
+            "Risk-taking",
+            "Courageous",
+            "Curious"
+          ]
+        },
+        {
+          "text": "Research it and ask hard questions before I commit.",
+          "qualities": [
+            "Analytical",
+            "Careful",
+            "Realistic"
+          ]
+        },
+        {
+          "text": "Picture what it could become and start sketching ideas.",
+          "qualities": [
+            "Imaginative",
+            "Visionary",
+            "Enthusiastic"
+          ]
+        },
+        {
+          "text": "Check my gut and decide fast.",
+          "qualities": [
+            "Intuitive",
+            "Instinctive",
+            "Spontaneous"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q6",
+      "label": "The 6 a.m. airport run",
+      "text": "You promised to pick up a family member from the airport at 6 a.m. It is raining and you are exhausted. What do you do?",
+      "options": [
+        {
+          "text": "Show up early without a second thought.",
+          "qualities": [
+            "Reliable",
+            "Punctual",
+            "Dependable"
+          ]
+        },
+        {
+          "text": "Show up, and use the drive to give them my full attention and ask about the trip.",
+          "qualities": [
+            "Attentive",
+            "Caring",
+            "Present"
+          ]
+        },
+        {
+          "text": "Set it all up the night before, alarm, route, coffee, so nothing can go wrong.",
+          "qualities": [
+            "Organized",
+            "Responsible",
+            "Self-disciplined"
+          ]
+        },
+        {
+          "text": "If I truly cannot, say so the night before and arrange a good backup.",
+          "qualities": [
+            "Honest",
+            "Responsible",
+            "Trustworthy"
+          ]
+        }
+      ]
+    }
+  ],
+  "gapFillers": {
+    "Relationships": {
+      "id": "gr",
+      "label": "The lost newcomer",
+      "text": "A new person at work or in your class is clearly lost and nobody has noticed. What do you do?",
+      "options": [
+        {
+          "text": "Walk over and introduce them to a few people.",
+          "qualities": [
+            "Personable",
+            "Friendly",
+            "Outgoing"
+          ]
+        },
+        {
+          "text": "Quietly ask how they are doing and notice what they need.",
+          "qualities": [
+            "Empathetic",
+            "Caring",
+            "Connected"
+          ]
+        },
+        {
+          "text": "Offer to show them the ropes over the next few weeks.",
+          "qualities": [
+            "Guiding",
+            "Supportive",
+            "Patient"
+          ]
+        },
+        {
+          "text": "Make sure they have what they need to get started: the logins, the desk, the how-to.",
+          "qualities": [
+            "Helpful",
+            "Team player",
+            "Practical"
+          ]
+        }
+      ]
+    },
+    "Energy & Drive": {
+      "id": "ge",
+      "label": "The surprise toast",
+      "text": "You are unexpectedly asked to say a few words in front of 50 people tomorrow. What is your reaction?",
+      "options": [
+        {
+          "text": "Say yes right away and figure it out.",
+          "qualities": [
+            "Confident",
+            "Courageous",
+            "Spontaneous"
+          ]
+        },
+        {
+          "text": "Get excited. This is a chance to make a good moment.",
+          "qualities": [
+            "Enthusiastic",
+            "Energetic",
+            "Joyful"
+          ]
+        },
+        {
+          "text": "See it as a chance to be noticed and move ahead.",
+          "qualities": [
+            "Ambitious",
+            "Motivated",
+            "Results oriented"
+          ]
+        },
+        {
+          "text": "Feel nervous, prepare carefully, and bounce back from the jitters.",
+          "qualities": [
+            "Resilient",
+            "Determined",
+            "Careful"
+          ]
+        }
+      ]
+    },
+    "Inner State": {
+      "id": "gi",
+      "label": "After the busy stretch",
+      "text": "A very busy stretch of your life has just ended. What do you notice first?",
+      "options": [
+        {
+          "text": "A quiet settledness.",
+          "qualities": [
+            "Calm",
+            "Centered",
+            "Grounded"
+          ]
+        },
+        {
+          "text": "Pride in what I got through.",
+          "qualities": [
+            "Proud",
+            "Powerful",
+            "Confident"
+          ]
+        },
+        {
+          "text": "Clarity about what in it actually mattered.",
+          "qualities": [
+            "Self-aware",
+            "Purposeful",
+            "Pensive"
+          ]
+        },
+        {
+          "text": "A pull to return to my own routines: sleep, exercise, a normal schedule.",
+          "qualities": [
+            "Self-disciplined",
+            "Conscientious",
+            "Present"
+          ]
+        }
+      ]
+    },
+    "Character & Values": {
+      "id": "gc",
+      "label": "The secret",
+      "text": "A friend tells you a secret. Later, someone else asks you about it directly. What do you do?",
+      "options": [
+        {
+          "text": "“I cannot talk about that.” Flat and final.",
+          "qualities": [
+            "Loyal",
+            "Trustworthy",
+            "Firm"
+          ]
+        },
+        {
+          "text": "Smile and steer the conversation elsewhere without lying.",
+          "qualities": [
+            "Tactful",
+            "Diplomatic",
+            "Ethical"
+          ]
+        },
+        {
+          "text": "Stay out of it. It is not my story to tell.",
+          "qualities": [
+            "Modest",
+            "Sincere",
+            "Truthful"
+          ]
+        },
+        {
+          "text": "Tell my friend that someone asked, so they are not blindsided.",
+          "qualities": [
+            "Truthful",
+            "Candid",
+            "Authentic"
+          ]
+        }
+      ]
+    }
+  },
+  "gapCategoryOrder": [
+    "Relationships",
+    "Energy & Drive",
+    "Inner State",
+    "Character & Values"
+  ]
+}
