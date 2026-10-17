@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   AREA,
   AREAS,
@@ -20,7 +20,7 @@ import {
   type CifState,
 } from "@/lib/cif";
 import type { CifAnswers, LifeAreaId } from "@/lib/data";
-import { cifEdit, cifNext, setCifAnswers, setFocusAreas, setLifeAreaScore } from "@/lib/store";
+import { cifEdit, cifNext, cifNextAfter, setCifAnswers, setFocusAreas, setLifeAreaScore, updateUser, useApp } from "@/lib/store";
 import Wheel from "./Wheel";
 import {
   Actions,
@@ -36,6 +36,23 @@ import {
 } from "./ui";
 
 type Props = { step: string; s: CifState; onSubmit: () => void };
+
+// Errors: each message renders directly under the field it belongs to (the field points at it
+// with aria-describedby), and when Continue finds something missing, focus moves to that field.
+// Option groups take focus as a whole (tabIndex -1).
+function useFieldError() {
+  const [error, setError] = useState("");
+  const field = useRef<HTMLElement | null>(null);
+  const fail = (message: string, target?: HTMLElement | null) => {
+    setError(message);
+    // The field is already on screen, so focus it now (not on a later frame, which a
+    // background tab may never run).
+    (target ?? field.current)?.focus();
+  };
+  return { error, setError, fail, field };
+}
+const ERR = "cif-error";
+const describedBy = (error: string, id = ERR) => (error ? id : undefined);
 
 const set = (patch: Partial<CifAnswers>) => setCifAnswers(patch);
 const filled = (v: string) => v.trim().length > 0;
@@ -63,25 +80,36 @@ function PickOne({
   own?: { placeholder: string; value: string; onChange: (v: string) => void };
   skippable?: boolean;
 }) {
-  const [error, setError] = useState("");
+  const { error, setError, fail, field } = useFieldError();
   const answered = value !== null || (!!own && filled(own.value));
   return (
     <>
       <QuestionHead title={title} helper={helper} />
-      <div role="group" aria-labelledby="qtitle" className="mt-16 flex flex-col gap-8">
+      <div
+        ref={(el) => {
+          field.current = el;
+        }}
+        tabIndex={-1}
+        role="group"
+        aria-labelledby="qtitle"
+        aria-describedby={describedBy(error)}
+        className="mt-16 flex flex-col gap-8 outline-none"
+      >
         {options.map((o) => (
           <ChoiceCard
             key={saveOf(o)}
             label={labelOf(o)}
             selected={value === saveOf(o) && !(own && filled(own.value))}
             onClick={() => {
+              setError("");
               onPick(saveOf(o));
               own?.onChange("");
-              setTimeout(cifNext, 220); // single choice moves on by itself
+              cifNextAfter(220); // single choice moves on by itself (once, however many taps)
             }}
           />
         ))}
       </div>
+      <ErrorText id={ERR} message={error} />
       {own && (
         <div className="mt-16">
           <TextInput
@@ -89,17 +117,15 @@ function PickOne({
             placeholder={own.placeholder}
             value={own.value}
             onChange={(e) => {
+              setError("");
               own.onChange(e.target.value);
               if (filled(e.target.value)) onPick(null);
             }}
           />
         </div>
       )}
-      <div className="mt-8">
-        <ErrorText message={error} />
-      </div>
       <Actions
-        onNext={() => (answered || skippable ? cifNext() : setError("Pick one to continue."))}
+        onNext={() => (answered || skippable ? cifNext() : fail("Pick one to continue."))}
         onSkip={skippable ? cifNext : undefined}
       />
     </>
@@ -127,7 +153,9 @@ function PickMany({
   none?: { label: string; value: boolean; onChange: (v: boolean) => void };
   required?: boolean;
 }) {
-  const [error, setError] = useState("");
+  const { error, setError, fail, field } = useFieldError();
+  // A "pick up to" message from the own-words box sits under that box instead.
+  const [ownError, setOwnError] = useState("");
   const chips = options.length > 8;
   const ownCount = own && filled(own.value) ? 1 : 0;
   const count = values.length + ownCount + (none?.value ? 1 : 0);
@@ -143,7 +171,16 @@ function PickMany({
   return (
     <>
       <QuestionHead title={title} helper={helper} />
-      <div role="group" aria-labelledby="qtitle" className={`mt-16 ${chips ? "flex flex-wrap gap-8" : "flex flex-col gap-8"}`}>
+      <div
+        ref={(el) => {
+          field.current = el;
+        }}
+        tabIndex={-1}
+        role="group"
+        aria-labelledby="qtitle"
+        aria-describedby={describedBy(error)}
+        className={`mt-16 outline-none ${chips ? "flex flex-wrap gap-8" : "flex flex-col gap-8"}`}
+      >
         {options.map((o) => (
           <CheckCard key={o} label={o} chip={chips} selected={values.includes(o)} onClick={() => toggle(o)} />
         ))}
@@ -161,29 +198,30 @@ function PickMany({
           />
         )}
       </div>
+      <ErrorText id={ERR} message={error} />
       {own && (
         <div className="mt-16">
           <TextInput
             aria-label={own.placeholder}
             placeholder={own.placeholder}
             value={own.value}
+            aria-describedby={describedBy(ownError, "cif-own-error")}
             onChange={(e) => {
               const v = e.target.value;
               if (max && filled(v) && !filled(own.value) && values.length >= max) {
-                setError(`Pick up to ${max}. Untick one to swap.`);
+                setOwnError(`Pick up to ${max}. Untick one to swap.`);
                 return;
               }
+              setOwnError("");
               setError("");
               own.onChange(v);
             }}
           />
+          <ErrorText id="cif-own-error" message={ownError} />
         </div>
       )}
-      <div className="mt-8">
-        <ErrorText message={error} />
-      </div>
       <Actions
-        onNext={() => (required && count === 0 ? setError("Pick at least one to continue.") : cifNext())}
+        onNext={() => (required && count === 0 ? fail("Pick at least one to continue.") : cifNext())}
         onSkip={required ? undefined : cifNext}
       />
     </>
@@ -203,13 +241,18 @@ function LongText({
   onChange: (v: string) => void;
   required?: boolean;
 }) {
-  const [error, setError] = useState("");
+  const { error, setError, fail, field } = useFieldError();
   return (
     <>
       <QuestionHead title={title} helper={helper} />
       <div className="mt-16">
         <TextArea
+          ref={(el) => {
+            field.current = el;
+          }}
           aria-labelledby="qtitle"
+          aria-invalid={!!error}
+          aria-describedby={describedBy(error)}
           placeholder="My answer"
           value={value}
           onChange={(e) => {
@@ -217,12 +260,10 @@ function LongText({
             onChange(e.target.value);
           }}
         />
-      </div>
-      <div className="mt-8">
-        <ErrorText message={error} />
+        <ErrorText id={ERR} message={error} />
       </div>
       <Actions
-        onNext={() => (required && !filled(value) ? setError("A few words is plenty.") : cifNext())}
+        onNext={() => (required && !filled(value) ? fail("A few words is plenty.") : cifNext())}
         onSkip={required ? undefined : cifNext}
       />
     </>
@@ -301,7 +342,10 @@ export function BreakScreen({ n }: { n: number }) {
 
 export function CifStep({ step, s, onSubmit }: Props) {
   const a = s.answers;
-  const [error, setError] = useState("");
+  const { error, setError, fail, field } = useFieldError();
+  const groupRef = (el: HTMLElement | null) => {
+    field.current = el;
+  };
 
   if (step.startsWith("rate:")) {
     const id = step.slice(5) as LifeAreaId;
@@ -315,7 +359,14 @@ export function CifStep({ step, s, onSubmit }: Props) {
           title={`How would you rate ${area.phrase} right now?`}
           helper={area.hint}
         />
-        <div role="group" aria-label="Score from 1 to 10" className="mt-16 grid grid-cols-5 gap-8">
+        <div
+          ref={groupRef}
+          tabIndex={-1}
+          role="group"
+          aria-label="Score from 1 to 10"
+          aria-describedby={describedBy(error)}
+          className="mt-16 grid grid-cols-5 gap-8 outline-none"
+        >
           {Array.from({ length: 10 }, (_, i) => i + 1).map((n) => (
             <button
               key={n}
@@ -323,8 +374,9 @@ export function CifStep({ step, s, onSubmit }: Props) {
               aria-pressed={score === n}
               aria-label={`${n} out of 10`}
               onClick={() => {
+                setError("");
                 setLifeAreaScore(id, n);
-                setTimeout(cifNext, 260);
+                cifNextAfter(260);
               }}
               className={`rounded-pill border-hairline px-12 py-8 font-mono text-data-table ${
                 score === n ? "border-primary-700 bg-primary-500 text-white" : "border-background-600 bg-white text-black"
@@ -334,6 +386,7 @@ export function CifStep({ step, s, onSubmit }: Props) {
             </button>
           ))}
         </div>
+        <ErrorText id={ERR} message={error} />
         <div className="mt-8 flex justify-between text-caption text-ink-50">
           <span>1 · Not at all where I want it</span>
           <span>10 · Exactly right</span>
@@ -341,10 +394,7 @@ export function CifStep({ step, s, onSubmit }: Props) {
         <div className="mt-24 flex justify-center">
           <Wheel lifeAreas={s.lifeAreas} active={id} />
         </div>
-        <div className="mt-8">
-          <ErrorText message={error} />
-        </div>
-        <Actions onNext={() => (score === null ? setError("Tap a number to continue.") : cifNext())} />
+        <Actions onNext={() => (score === null ? fail("Tap a number to continue.") : cifNext())} />
       </>
     );
   }
@@ -362,18 +412,27 @@ export function CifStep({ step, s, onSubmit }: Props) {
           title={`What would it take to move ${area.phrase} from ${score} closer to 10?`}
           helper="Pick any that fit, write your own, or both."
         />
-        <div role="group" aria-labelledby="qtitle" className="mt-16 flex flex-col gap-8">
+        <div
+          ref={groupRef}
+          tabIndex={-1}
+          role="group"
+          aria-labelledby="qtitle"
+          aria-describedby={describedBy(error)}
+          className="mt-16 flex flex-col gap-8 outline-none"
+        >
           {area.goals.map((o) => (
             <CheckCard
               key={o}
               label={o}
               selected={g.picks.includes(o) && !g.explore}
-              onClick={() =>
-                setGoal({ explore: false, picks: g.picks.includes(o) ? g.picks.filter((x) => x !== o) : [...g.picks, o] })
-              }
+              onClick={() => {
+                setError("");
+                setGoal({ explore: false, picks: g.picks.includes(o) ? g.picks.filter((x) => x !== o) : [...g.picks, o] });
+              }}
             />
           ))}
         </div>
+        <ErrorText id={ERR} message={error} />
         <div className="my-16 border-t-hairline border-ink-25" />
         <div className="flex flex-col gap-8">
           <TextArea
@@ -381,23 +440,26 @@ export function CifStep({ step, s, onSubmit }: Props) {
             aria-label="Your goal in your own words"
             placeholder={OWN_GOAL}
             value={g.explore ? "" : g.own}
-            onChange={(e) => setGoal({ explore: false, own: e.target.value })}
+            onChange={(e) => {
+              setError("");
+              setGoal({ explore: false, own: e.target.value });
+            }}
           />
           {/* "I'm not sure yet…" clears the other picks and stands alone. */}
           <SpecialCard
             label={EXPLORE}
             selected={g.explore}
-            onClick={() => setGoal(g.explore ? { explore: false } : { explore: true, picks: [], own: "" })}
+            onClick={() => {
+              setError("");
+              setGoal(g.explore ? { explore: false } : { explore: true, picks: [], own: "" });
+            }}
           />
-        </div>
-        <div className="mt-8">
-          <ErrorText message={error} />
         </div>
         <Actions
           onNext={() =>
             g.explore || g.picks.length || filled(g.own)
               ? cifNext()
-              : setError("Pick a goal, write your own, or choose to explore it together.")
+              : fail("Pick a goal, write your own, or choose to explore it together.")
           }
         />
       </>
@@ -406,31 +468,7 @@ export function CifStep({ step, s, onSubmit }: Props) {
 
   switch (step) {
     case "name":
-      return (
-        <>
-          <QuestionHead title="What should I call you?" helper="Your email helps me match this to your file." />
-          <div className="mt-16 flex flex-col gap-16">
-            <label className="flex flex-col gap-8">
-              <FieldLabel>Your name</FieldLabel>
-              <TextInput autoComplete="given-name" placeholder="My answer" value={a.name} onChange={(e) => set({ name: e.target.value })} />
-            </label>
-            <label className="flex flex-col gap-8">
-              <FieldLabel>Your email</FieldLabel>
-              <TextInput type="email" autoComplete="email" placeholder="My answer" value={a.email} onChange={(e) => set({ email: e.target.value })} />
-            </label>
-          </div>
-          <div className="mt-8">
-            <ErrorText message={error} />
-          </div>
-          <Actions
-            onNext={() => {
-              if (!filled(a.name)) return setError("Please add your name.");
-              if (!/^\S+@\S+\.\S+$/.test(a.email.trim())) return setError("Please check your email address.");
-              cifNext();
-            }}
-          />
-        </>
-      );
+      return <NameAndEmail name={a.name} email={a.email} />;
 
     case "pronoun":
       return (
@@ -466,7 +504,14 @@ export function CifStep({ step, s, onSubmit }: Props) {
           <div className="mt-16 flex justify-center">
             <Wheel lifeAreas={s.lifeAreas} />
           </div>
-          <div role="group" aria-labelledby="qtitle" className="mt-16 flex flex-col gap-8">
+          <div
+            ref={groupRef}
+            tabIndex={-1}
+            role="group"
+            aria-labelledby="qtitle"
+            aria-describedby={describedBy(error)}
+            className="mt-16 flex flex-col gap-8 outline-none"
+          >
             {byScoreAscending(s.lifeAreas).map((area) => {
               const on = chosen.includes(area.id);
               return (
@@ -485,12 +530,10 @@ export function CifStep({ step, s, onSubmit }: Props) {
               );
             })}
           </div>
-          <div className="mt-8">
-            <ErrorText message={error} />
-          </div>
+          <ErrorText id={ERR} message={error} />
           <Actions
             onNext={() => {
-              if (!chosen.length) return setError("Pick at least one area.");
+              if (!chosen.length) return fail("Pick at least one area.");
               if (!s.progress.focusChosen) setFocusAreas(chosen); // keep the pre-ticked three
               cifNext();
             }}
@@ -645,8 +688,11 @@ export function CifStep({ step, s, onSubmit }: Props) {
             {["e.g. Calm", "e.g. Funny", "e.g. Smart"].map((placeholder, i) => (
               <TextInput
                 key={i}
+                id={`cif-word-${i}`}
                 large
                 aria-label={`Word ${i + 1}`}
+                aria-invalid={!!error && !filled(a.words[i])}
+                aria-describedby={describedBy(error)}
                 placeholder={placeholder}
                 value={a.words[i]}
                 // Exactly three words: one per box, no spaces.
@@ -659,10 +705,14 @@ export function CifStep({ step, s, onSubmit }: Props) {
               />
             ))}
           </div>
-          <div className="mt-8">
-            <ErrorText message={error} />
-          </div>
-          <Actions onNext={() => (a.words.every(filled) ? cifNext() : setError("Three words, one in each box."))} />
+          <ErrorText id={ERR} message={error} />
+          <Actions
+            onNext={() => {
+              const empty = a.words.findIndex((w) => !filled(w));
+              if (empty === -1) return cifNext();
+              fail("Three words, one in each box.", document.getElementById(`cif-word-${empty}`));
+            }}
+          />
         </>
       );
     case "background":
@@ -711,6 +761,87 @@ export function CifStep({ step, s, onSubmit }: Props) {
   }
 }
 
+// ---------- name and email ----------
+
+const EMAIL = /^\S+@\S+\.\S+$/;
+
+function NameAndEmail({ name, email }: { name: string; email: string }) {
+  const { user } = useApp();
+  const [errors, setErrors] = useState<{ name?: string; email?: string }>({});
+  const nameRef = useRef<HTMLInputElement>(null);
+  const emailRef = useRef<HTMLInputElement>(null);
+
+  // The client is already signed in: start from the account's name and email.
+  useEffect(() => {
+    const patch: Partial<CifAnswers> = {};
+    if (!filled(name) && user?.name) patch.name = user.name;
+    if (!filled(email) && user?.email) patch.email = user.email;
+    if (Object.keys(patch).length) set(patch);
+    // Only on arrival; after that the fields belong to the client.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const change = (key: "name" | "email", value: string) => {
+    setErrors((e) => ({ ...e, [key]: undefined }));
+    set({ [key]: value });
+    // Kept in step with the account, so Settings and sign-in show the corrected value.
+    if (filled(value) && (key === "name" || EMAIL.test(value.trim()))) updateUser({ [key]: value.trim() });
+  };
+
+  return (
+    <>
+      <QuestionHead title="What should I call you?" helper="Your email helps me match this to your file." />
+      <div className="mt-16 flex flex-col gap-16">
+        <div className="flex flex-col gap-8">
+          <label htmlFor="cif-name">
+            <FieldLabel>Your name</FieldLabel>
+          </label>
+          <TextInput
+            id="cif-name"
+            ref={nameRef}
+            autoComplete="name"
+            placeholder="Your first and last name"
+            value={name}
+            aria-invalid={!!errors.name}
+            aria-describedby={errors.name ? "cif-name-error" : undefined}
+            onChange={(e) => change("name", e.target.value)}
+          />
+          <ErrorText id="cif-name-error" message={errors.name ?? ""} />
+        </div>
+        <div className="flex flex-col gap-8">
+          <label htmlFor="cif-email">
+            <FieldLabel>Your email</FieldLabel>
+          </label>
+          <TextInput
+            id="cif-email"
+            ref={emailRef}
+            type="email"
+            autoComplete="email"
+            placeholder="name@example.com"
+            value={email}
+            aria-invalid={!!errors.email}
+            aria-describedby={errors.email ? "cif-email-error" : undefined}
+            onChange={(e) => change("email", e.target.value)}
+          />
+          <ErrorText id="cif-email-error" message={errors.email ?? ""} />
+        </div>
+      </div>
+      <Actions
+        onNext={() => {
+          const next = {
+            name: filled(name) ? undefined : "Please add your name.",
+            email: EMAIL.test(email.trim()) ? undefined : "Please check your email address.",
+          };
+          setErrors(next);
+          if (next.name) return nameRef.current?.focus();
+          if (next.email) return emailRef.current?.focus();
+          cifNext();
+        }}
+      />
+    </>
+  );
+}
+
 // ---------- summary ----------
 
 function Summary({ s, onSubmit }: { s: CifState; onSubmit: () => void }) {
@@ -721,9 +852,11 @@ function Summary({ s, onSubmit }: { s: CifState; onSubmit: () => void }) {
   const goals = focus
     .map((id) => {
       const g = a.goals[id];
+      const picked = withOwn(g?.picks ?? [], g?.own ?? "");
+      // Never a bare "Career (7):" — an area without goals says so, and Edit leads back to it.
       return g?.explore
         ? `${AREA[id].label} (${score(id)}): explore together`
-        : `${AREA[id].label} (${score(id)}): ${withOwn(g?.picks ?? [], g?.own ?? "").join("; ")}`;
+        : `${AREA[id].label} (${score(id)}): ${picked.length ? picked.join("; ") : "no goals picked yet"}`;
     })
     .join("\n");
   const label = <T extends { save: string; label: string }>(list: T[], v: string | null) =>

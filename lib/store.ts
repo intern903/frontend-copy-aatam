@@ -361,8 +361,24 @@ const withProgress = (s: AppState, patch: Partial<CifProgress>): AppState => ({
   cif: { ...s.cif, progress: { ...s.cif.progress, ...patch } },
 });
 
+/**
+ * "My main goals" starts as text built from the focus areas and their goals. While the client
+ * hasn't changed that text, it keeps following them (e.g. a focus area added from the summary);
+ * once they edit it, it is theirs and is never overwritten.
+ */
+function refreshObjectives(s: AppState): AppState {
+  const a = s.cif.answers;
+  const untouched = !a.objectives.trim() || a.objectives === a.objectivesPrefill;
+  if (!untouched || !a.objectivesPrefill) return s; // not reached yet, or the client's own words
+  const pre = objectivesPrefill(cifState(s));
+  return pre === a.objectives ? s : { ...s, cif: { ...s.cif, answers: { ...a, objectives: pre, objectivesPrefill: pre } } };
+}
+
 export function setCifAnswers(answers: Partial<CifAnswers>) {
-  update((s) => ({ ...s, cif: { ...s.cif, answers: { ...s.cif.answers, ...answers } } }));
+  update((s) => {
+    const next = { ...s, cif: { ...s.cif, answers: { ...s.cif.answers, ...answers } } };
+    return "goals" in answers ? refreshObjectives(next) : next;
+  });
 }
 export function setLifeAreaScore(id: LifeAreaId, score: number) {
   update((s) => ({
@@ -373,9 +389,11 @@ export function setLifeAreaScore(id: LifeAreaId, score: number) {
 /** Set the 1–3 focus areas (the client has now chosen, so the lowest-three default no longer applies). */
 export function setFocusAreas(ids: LifeAreaId[]) {
   update((s) =>
-    withProgress(
-      { ...s, cif: { ...s.cif, lifeAreas: s.cif.lifeAreas.map((a) => ({ ...a, focus: ids.includes(a.id) })) } },
-      { focusChosen: true },
+    refreshObjectives(
+      withProgress(
+        { ...s, cif: { ...s.cif, lifeAreas: s.cif.lifeAreas.map((a) => ({ ...a, focus: ids.includes(a.id) })) } },
+        { focusChosen: true },
+      ),
     ),
   );
 }
@@ -405,6 +423,18 @@ export function cifNext() {
   const { step, stopEditing } = nextStep(cifState(state));
   if (stopEditing) update((s) => withProgress(s, { editing: false }));
   cifGo(step);
+}
+/**
+ * For screens that move on by themselves after a tap (ratings, single choices): moves on after
+ * `delay`, but only if the client is still on the screen the tap was made on. Without this, a
+ * second tap (or a tap during the move) moved on twice and skipped the next question unanswered.
+ */
+export function cifNextAfter(delay: number) {
+  ensureLoaded();
+  const from = state.cif.progress.current;
+  setTimeout(() => {
+    if (state.cif.progress.current === from) cifNext();
+  }, delay);
 }
 export function cifBack(flowSteps: string[]) {
   update((s) => {

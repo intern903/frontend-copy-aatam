@@ -95,7 +95,8 @@ export default function FinalPage() {
 
       {open !== null && lp.clusters[open] && (
         <PopUpSheet title={lp.clusters[open].name} radius="md" onClose={() => setOpen(null)}>
-          <div className="flex flex-wrap gap-8">
+          {/* Close together, so the cluster reads as one group. */}
+          <div className="flex flex-wrap gap-4">
             {lp.clusters[open].words.map((w) => (
               <span key={w} className={`rounded-pill px-12 py-4 text-body-small text-white ${clusterColour(open).solid}`}>
                 {w}

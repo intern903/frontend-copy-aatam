@@ -6,7 +6,7 @@ import { useEffect } from "react";
 // Shown when a not-started module is tapped. Not in Figma: it reuses the
 // design's Check Mail card (cream, 16px radius, 40px padding, Body Large).
 // Tap anywhere or press Escape to close.
-// With `cif`, it says the intake form comes first and links to it.
+// With `cif`, it says the Get to Know You form comes first and links to it.
 export default function CoachPopup({ onClose, cif }: { onClose: () => void; cif?: boolean }) {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
@@ -24,11 +24,11 @@ export default function CoachPopup({ onClose, cif }: { onClose: () => void; cif?
     >
       <div className="flex w-content flex-col items-center justify-center gap-20 rounded-16 bg-background p-check-mail">
         <p className="text-center text-body-large text-black">
-          {cif ? "Start with Myself: fill in your intake form, and the rest opens once it’s sent." : "Your coach will open this when you are ready."}
+          {cif ? "Your journey begins with filling out the Get to Know You form." : "Your coach will open this when you are ready."}
         </p>
         {cif && (
           <Link href="/cif" onClick={(e) => e.stopPropagation()} className="w-full rounded-8 bg-primary-600 py-16 text-center text-button-cta text-white">
-            Open my form
+            Open the form
           </Link>
         )}
       </div>

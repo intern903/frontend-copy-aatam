@@ -90,6 +90,7 @@ export default function Wheel({
                   {a.label.includes(" ") && a.label.length > 12 ? (
                     a.label.split(" ").map((word, w, words) => (
                       <tspan key={word} x={lx} dy={w === 0 ? "-0.6em" : "1.2em"}>
+                        {w > 0 ? " " : ""}
                         {word}
                         {w === words.length - 1 && sc !== null ? ` ${sc}` : ""}
                       </tspan>

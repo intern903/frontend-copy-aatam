@@ -2,9 +2,9 @@
 
 import { FloatingBack } from "@/components/shell/BackButton";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import AuthCard from "@/components/auth/AuthCard";
-import AuthField, { AuthError, AuthSubmit } from "@/components/auth/AuthField";
+import AuthField, { AuthSubmit } from "@/components/auth/AuthField";
 import { createToken, saveToken } from "@/lib/auth";
 import { signIn } from "@/lib/store";
 
@@ -16,11 +16,13 @@ export default function SignupPage() {
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
   const [mismatch, setMismatch] = useState(false);
+  const confirmRef = useRef<HTMLInputElement>(null);
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (password !== confirm) {
       setMismatch(true);
+      confirmRef.current?.focus();
       return;
     }
     const user = { name: name.trim(), email: email.trim() };
@@ -70,13 +72,14 @@ export default function SignupPage() {
           type="password"
           name="confirm"
           autoComplete="new-password"
+          ref={confirmRef}
+          error={mismatch ? "The two passwords don’t match." : undefined}
           value={confirm}
           onChange={(v) => {
             setConfirm(v);
             setMismatch(false);
           }}
         />
-        {mismatch && <AuthError>The two passwords don’t match.</AuthError>}
         <AuthSubmit />
       </AuthCard>
     </main>

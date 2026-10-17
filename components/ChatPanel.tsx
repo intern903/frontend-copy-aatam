@@ -130,8 +130,9 @@ export default function ChatPanel({
 
       <div className="relative flex min-h-0 flex-1 flex-col gap-20 px-32 pb-[115px]">
         {!started ? (
-          <>
-            <div className="box-content flex h-icon-button items-center pt-header-top">
+          // The greeting and cards scroll; the text box below stays put above the nav.
+          <div className="-mx-32 flex min-h-0 flex-1 flex-col gap-20 overflow-y-auto px-32 pb-8">
+            <div className="box-content flex h-icon-button shrink-0 items-center pt-header-top">
               <button type="button" aria-label="Close the companion" onClick={onClose} className="flex size-icon-button items-center justify-center rounded-pill bg-white">
                 <Image src="/icons/arrow-left.svg" alt="" width={24} height={24} />
               </button>
@@ -145,8 +146,8 @@ export default function ChatPanel({
               <StartCard
                 tone="blue"
                 title="Want to live with intention?"
-                body="Add the guidelines that keep your days pointed toward what matters to you."
-                action="Add Guidelines"
+                body="Add the Life Codes that keep your days pointed toward what matters to you."
+                action="Add a Life Code"
                 onClick={() => leave(`/life-code/new?source=Chat`)}
               />
               <StartCard
@@ -158,8 +159,7 @@ export default function ChatPanel({
               />
               <StartCard tone="yellow" title="Want to log today's result?" body="Mark today a win in my results game." action="Log My Result" onClick={() => leave("/outcomes/today")} />
             </div>
-            <div className="flex-1" />
-          </>
+          </div>
         ) : (
           <div className="mt-[102px] flex min-h-0 flex-1 flex-col">
             <div className="flex min-h-0 flex-1 flex-col overflow-y-auto rounded-12 border border-chat-line bg-white p-16">
@@ -216,7 +216,7 @@ export default function ChatPanel({
             e.preventDefault();
             submit();
           }}
-          className="mt-20 flex items-center justify-between gap-8 rounded-12 border border-chat-line bg-white px-12 py-8"
+          className="mt-20 flex shrink-0 items-center justify-between gap-8 rounded-12 border border-chat-line bg-white px-12 py-8"
         >
           <span className="flex min-w-0 flex-1 items-center gap-4">
             <Image src="/icons/add.svg" alt="" width={24} height={24} />

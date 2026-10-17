@@ -52,9 +52,10 @@ function Naming() {
       </div>
 
       <h1 className="mt-24 font-heading text-h1 text-black">What do these words say about me?</h1>
-      <div className="mt-16 flex flex-wrap gap-8">
+      {/* Set close together so the cluster reads as one group (Dinesh: they sat too far apart). */}
+      <div className="mt-16 flex flex-wrap gap-4">
         {cluster.words.map((w) => (
-          <span key={w} className={`rounded-pill px-16 py-8 text-body-medium text-white ${colour.solid}`}>
+          <span key={w} className={`rounded-pill px-12 py-4 text-body-medium text-white ${colour.solid}`}>
             {w}
           </span>
         ))}

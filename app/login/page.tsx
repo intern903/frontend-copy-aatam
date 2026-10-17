@@ -2,9 +2,9 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import AuthCard from "@/components/auth/AuthCard";
-import AuthField, { AuthError, AuthSubmit } from "@/components/auth/AuthField";
+import AuthField, { AuthSubmit } from "@/components/auth/AuthField";
 import { createToken, saveToken } from "@/lib/auth";
 import { DEMO_FULL_EMAIL, DEMO_NEW_EMAIL, demoFullAccount, demoNewAccount } from "@/lib/demo-data";
 import { loadDemoAccount, signIn, useApp } from "@/lib/store";
@@ -16,6 +16,7 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [remember, setRemember] = useState(false);
   const [error, setError] = useState(false);
+  const emailRef = useRef<HTMLInputElement>(null);
 
   // The two fixed demo accounts (lib/demo-data.ts): sign straight in, replacing whatever this
   // browser had saved. Typing either email in the form does the same, with any password.
@@ -35,6 +36,7 @@ export default function LoginPage() {
     // Any password is accepted; only the email has to match the saved user.
     if (!user || user.email.toLowerCase() !== email.trim().toLowerCase()) {
       setError(true);
+      emailRef.current?.focus();
       return;
     }
     const token = createToken({ email: user.email, name: user.name });
@@ -55,6 +57,17 @@ export default function LoginPage() {
             type="email"
             name="email"
             autoComplete="email"
+            ref={emailRef}
+            error={
+              error ? (
+                <>
+              We couldn’t find an account with that email.{" "}
+              <Link href="/signup" className="underline">
+                Create one
+              </Link>
+                </>
+              ) : undefined
+            }
             value={email}
             onChange={(v) => {
               setEmail(v);
@@ -84,14 +97,6 @@ export default function LoginPage() {
               <Link href="/forgot-password">Forgot Password</Link>
             </div>
           </div>
-          {error && (
-            <AuthError>
-              We couldn’t find an account with that email.{" "}
-              <Link href="/signup" className="underline">
-                Create one
-              </Link>
-            </AuthError>
-          )}
         </div>
         <AuthSubmit />
       </AuthCard>

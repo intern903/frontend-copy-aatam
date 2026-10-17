@@ -1,34 +1,35 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { forwardRef, useId, useState } from "react";
 
 // Label (Body Medium) over a white 32px input with the inset shadow; password fields get the eye toggle.
-export default function AuthField({
-  label,
-  placeholder,
-  type,
-  name,
-  autoComplete,
-  value,
-  onChange,
-}: {
-  label: string;
-  placeholder: string;
-  type: "text" | "email" | "password";
-  name: string;
-  autoComplete: string;
-  value: string;
-  onChange: (value: string) => void;
-}) {
+// `error` renders directly under this field; the ref lets the form move focus here when it fails.
+const AuthField = forwardRef<
+  HTMLInputElement,
+  {
+    label: string;
+    placeholder: string;
+    type: "text" | "email" | "password";
+    name: string;
+    autoComplete: string;
+    value: string;
+    onChange: (value: string) => void;
+    error?: React.ReactNode;
+  }
+>(function AuthField({ label, placeholder, type, name, autoComplete, value, onChange, error }, ref) {
   const [visible, setVisible] = useState(false);
   const isPassword = type === "password";
+  const errorId = useId();
 
   return (
     <label className="flex w-full flex-col gap-4">
       <span className="text-body-medium text-ink-brown">{label}</span>
       <span className="flex w-full items-center justify-between gap-8 rounded-4 bg-white p-8 shadow-input-inset">
         <input
+          ref={ref}
+          aria-invalid={!!error}
+          aria-describedby={error ? errorId : undefined}
           type={isPassword && visible ? "text" : type}
           name={name}
           autoComplete={autoComplete}
@@ -49,9 +50,15 @@ export default function AuthField({
           </button>
         )}
       </span>
+      {error && (
+        <span id={errorId} role="alert" className="w-full text-caption-lg text-pink-700">
+          {error}
+        </span>
+      )}
     </label>
   );
-}
+});
+export default AuthField;
 
 export function AuthSubmit({ label = "Let’s start the journey within..." }: { label?: string }) {
   return (

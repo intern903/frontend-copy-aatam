@@ -3,7 +3,7 @@
 import { FloatingBack } from "@/components/shell/BackButton";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Suspense, useState } from "react";
+import { Suspense, useRef, useState } from "react";
 import AuthCard from "@/components/auth/AuthCard";
 import AuthField, { AuthError, AuthSubmit } from "@/components/auth/AuthField";
 import { createToken, saveToken } from "@/lib/auth";
@@ -19,11 +19,13 @@ function ResetPassword() {
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
   const [error, setError] = useState<"mismatch" | "unknown" | null>(null);
+  const confirmRef = useRef<HTMLInputElement>(null);
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (password !== confirm) {
       setError("mismatch");
+      confirmRef.current?.focus();
       return;
     }
     if (!user || user.email.toLowerCase() !== email.toLowerCase()) {
@@ -58,13 +60,14 @@ function ResetPassword() {
           type="password"
           name="confirm"
           autoComplete="new-password"
+          ref={confirmRef}
+          error={error === "mismatch" ? "The two passwords don’t match." : undefined}
           value={confirm}
           onChange={(v) => {
             setConfirm(v);
             setError(null);
           }}
         />
-        {error === "mismatch" && <AuthError>The two passwords don’t match.</AuthError>}
         {error === "unknown" && (
           <AuthError>
             We couldn’t find an account for {email || "this link"}.{" "}

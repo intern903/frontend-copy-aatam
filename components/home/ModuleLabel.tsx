@@ -6,27 +6,32 @@ import type { ModuleProgress } from "@/lib/modules";
 //   not started → pill at 60% opacity
 //   in progress → thin Primary/600 bar along the bottom edge, filled to the percentage
 //   finished    → the design's green check-circle before the label
+//   locked      → the same 60% as not started (the companion, before the form is sent)
 export default function ModuleLabel({
   label,
   progress,
   size = "caption",
+  locked,
   onClick,
 }: {
   label: string;
   progress?: ModuleProgress; // undefined = no state (the companion)
+  locked?: boolean;
   size?: "caption" | "h4";
   onClick: () => void;
 }) {
   const large = size === "h4";
-  const status = progress?.status;
+  const status = locked ? "not-started" : progress?.status;
   const description =
     status === "finished"
       ? `${label}, complete`
       : status === "in-progress"
         ? `${label}, ${progress!.percent}% complete`
-        : status === "not-started"
-          ? `${label}, not started`
-          : label;
+        : locked
+          ? `${label}, locked`
+          : status === "not-started"
+            ? `${label}, not started`
+            : label;
 
   return (
     <button

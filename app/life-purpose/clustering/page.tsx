@@ -12,7 +12,8 @@ import { setClusters, useApp } from "@/lib/store";
 // Figma "LP - Select Cluster 1/2" (portrait) and "LP - Select Cluster Landscape" (phone on its side).
 // The client's words lie scattered on a board that scrolls sideways; tapping a word puts it in
 // the current cluster (it fills with the cluster's colour, grows, and a thread joins it to the
-// cluster's other words). Words already in another cluster leave the pool. Two buttons, per the
+// cluster's other words). Words already in another cluster leave the board, and the words left
+// close up into a fresh layout (animated gently; still with reduced motion). Two buttons, per the
 // Life Purpose flow: "Next" finishes this cluster and starts another; "Wrap up" stays muted until
 // every word is in a cluster, then takes Next's place. The client groups the words; the app never groups them itself.
 // Landscape shows on a phone held sideways, or with ?landscape=1 for testing on desktop.
@@ -65,8 +66,6 @@ function Clustering() {
   const { lifePurpose: lp } = useApp();
   const words = useMemo(() => wordsFromStories(lp.stories), [lp.stories]);
   const canvasW = landscape ? 900 : 560;
-  const spots = useMemo(() => layout(words, canvasW), [words, canvasW]);
-  const canvasH = Math.max(landscape ? 272 : 521, (spots[spots.length - 1]?.y ?? 0) + ROW_H + 40);
 
   const clusters: Cluster[] = lp.clusters;
   const [current, setCurrent] = useState(() => {
@@ -78,6 +77,18 @@ function Clustering() {
 
   const clusterOf = (word: string) =>
     clusters.findIndex((c) => c.words.some((w) => w.toLowerCase() === word.toLowerCase()));
+
+  // The board holds only the words still in play: those in no cluster yet, plus the current
+  // cluster's own (highlighted where they lie). Words already given to another cluster leave,
+  // and the rest are laid out afresh, so they close up instead of leaving holes.
+  const pool = words.filter((w) => {
+    const owner = clusterOf(w);
+    return owner === -1 || owner === current;
+  });
+  const poolKey = pool.join("|");
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const spots = useMemo(() => layout(pool, canvasW), [poolKey, canvasW]);
+  const canvasH = Math.max(landscape ? 272 : 521, (spots[spots.length - 1]?.y ?? 0) + ROW_H + 40);
   const unclustered = words.filter((w) => clusterOf(w) === -1);
   const working: Cluster[] = current < clusters.length ? clusters : [...clusters, { name: "", words: [] }];
   const currentWords = working[current]?.words ?? [];
@@ -120,11 +131,15 @@ function Clustering() {
               <polyline points={points} fill="none" stroke={colour.line} strokeWidth={1} strokeDasharray="4 4" />
             </svg>
             {spots.map((s) => {
-              const owner = clusterOf(s.word);
-              const mine = owner === current;
-              if (owner !== -1 && !mine) return null; // already used: out of the pool
+              const mine = clusterOf(s.word) === current;
               return (
-                <div key={s.word} className="absolute" style={{ left: s.x, top: s.y }}>
+                // Keyed by word, so when the board re-lays out each word glides to its new spot
+                // (a word coming back fades in). No movement with reduced motion.
+                <div
+                  key={s.word}
+                  className="absolute animate-rise transition-[left,top] duration-500 ease-out motion-reduce:animate-none motion-reduce:transition-none"
+                  style={{ left: s.x, top: s.y }}
+                >
                   <WordPill
                     word={s.word}
                     tilt={s.tilt}

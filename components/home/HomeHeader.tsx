@@ -15,11 +15,7 @@ export default function HomeHeader({ name }: { name: string }) {
         >
           <Image src="/icons/user.svg" alt="" width={32} height={32} />
         </Link>
-        <div className="flex flex-col whitespace-nowrap text-white">
-          <p className="font-heading text-h4">{name}</p>
-          {/* Status label exactly as designed; nothing in the store drives it yet. */}
-          <p className="text-caption">In Training</p>
-        </div>
+        <p className="whitespace-nowrap font-heading text-h4 text-white">{name}</p>
       </div>
       <div className="flex items-center gap-4">
         <button

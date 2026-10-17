@@ -11,14 +11,14 @@ import { getModuleProgress, type ModuleId } from "@/lib/modules";
 import { cifDone, useApp } from "@/lib/store";
 
 // Label positions on the 393 × 852 Figma Homepage frame.
-// Myself is pinned by its right edge (Figma: x 32, 47 wide) so the finished check
-// grows it leftwards instead of into "My Companion" beside it.
 const modules: { id: ModuleId; label: string; position: React.CSSProperties }[] = [
   { id: "vision", label: "My Vision", position: { left: 18, top: 340 } },
   { id: "values", label: "My Values", position: { left: 98, top: 381 } },
   { id: "qualities", label: "My Qualities", position: { left: 271, top: 363 } },
-  { id: "guidelines", label: "My Guidelines", position: { left: 125, top: 576 } },
-  { id: "myself", label: "Myself", position: { right: 393 - 32 - 47, top: 626 } },
+  { id: "guidelines", label: "My Life Codes", position: { left: 125, top: 576 } },
+  // Not where Figma has "Myself" (x 32, y 626): the longer name would run into My Companion,
+  // so it sits one row up, clear of My Life Codes and the arrow beside it.
+  { id: "myself", label: "Get to Know You form", position: { left: 18, top: 600 } },
 ];
 
 export default function HomePage() {
@@ -27,7 +27,7 @@ export default function HomePage() {
   const [showPopup, setShowPopup] = useState<"coach" | "cif" | null>(null);
 
   function open(id: ModuleId) {
-    // Everything but Myself (the CIF) stays locked until the CIF is submitted.
+    // Everything but the Get to Know You form (the CIF) stays locked until it is submitted.
     if (id !== "myself" && !cifDone(state)) return setShowPopup("cif");
     const { href } = getModuleProgress(state, id);
     if (href) router.push(href);
@@ -68,7 +68,7 @@ export default function HomePage() {
         </div>
       ))}
 
-      {/* Arrow beside My Guidelines */}
+      {/* Arrow beside My Life Codes */}
       <Image
         src="/icons/guidelines-arrow.svg"
         alt=""
@@ -94,7 +94,11 @@ export default function HomePage() {
 
       {/* My Companion — the butterfly; opens the CCA chat, no progress state */}
       <div className="absolute" style={{ left: 91, top: 631 }}>
-        <ModuleLabel label="My Companion" onClick={() => openCompanion("home")} />
+        <ModuleLabel
+          label="My Companion"
+          locked={!cifDone(state)}
+          onClick={() => (cifDone(state) ? openCompanion("home") : setShowPopup("cif"))}
+        />
       </div>
 
       {showPopup && <CoachPopup cif={showPopup === "cif"} onClose={() => setShowPopup(null)} />}

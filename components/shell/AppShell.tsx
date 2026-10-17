@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 import ChatPanel from "@/components/ChatPanel";
 import { closeCompanion, useCompanion } from "@/lib/companion";
+import { cifDone, useApp } from "@/lib/store";
 import CifGate from "./CifGate";
 import { INDEX_PATH } from "@/lib/screens";
 import AppHeader from "./AppHeader";
@@ -17,6 +18,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const { header, nav, fullBleed } = getShellConfig(pathname);
   const companion = useCompanion();
+  const companionUnlocked = cifDone(useApp()); // locked, like the modules, until the form is sent
   // Going anywhere from the companion's nav closes it.
   useEffect(() => closeCompanion(), [pathname]);
 
@@ -37,7 +39,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
         )}
         <CifGate>{children}</CifGate>
         {nav && <BottomNav active={nav.active} />}
-        <ChatPanel moduleKey={companion.moduleKey} open={companion.open} firstMessage={companion.firstMessage} onClose={closeCompanion} />
+        <ChatPanel moduleKey={companion.moduleKey} open={companion.open && companionUnlocked} firstMessage={companion.firstMessage} onClose={closeCompanion} />
       </div>
     </AuthGuard>
   );

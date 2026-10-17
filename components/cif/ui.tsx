@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { forwardRef } from "react";
 
 // Building blocks for the CIF screens, from the Figma "CIF - Begin" frames.
 
@@ -75,9 +76,10 @@ export function Meta({ parts }: { parts: string[] }) {
   );
 }
 
-export function ErrorText({ message }: { message: string }) {
+/** The error for one field, rendered directly under that field. */
+export function ErrorText({ message, id }: { message: string; id?: string }) {
   return message ? (
-    <p role="alert" className="text-caption text-danger">
+    <p id={id} role="alert" className="mt-8 text-caption text-danger">
       {message}
     </p>
   ) : null;
@@ -198,15 +200,18 @@ export function SpecialCard({ label, selected, onClick }: { label: string; selec
 const boxClass =
   "w-full rounded-12 border-hairline border-background-600 bg-white p-12 text-black outline-none placeholder:text-ink-50";
 
-export function TextInput(props: React.InputHTMLAttributes<HTMLInputElement> & { large?: boolean }) {
-  const { large, className, ...rest } = props;
-  return <input {...rest} className={`${boxClass} ${large ? "text-body" : "text-body-small"} ${className ?? ""}`} />;
-}
+// Both take a ref, so a missing answer can move focus to its field.
+export const TextInput = forwardRef<HTMLInputElement, React.InputHTMLAttributes<HTMLInputElement> & { large?: boolean }>(
+  function TextInput({ large, className, ...rest }, ref) {
+    return <input ref={ref} {...rest} className={`${boxClass} ${large ? "text-body" : "text-body-small"} ${className ?? ""}`} />;
+  },
+);
 
-export function TextArea(props: React.TextareaHTMLAttributes<HTMLTextAreaElement>) {
-  const { className, ...rest } = props;
-  return <textarea rows={5} {...rest} className={`${boxClass} resize-none text-body-small ${className ?? ""}`} />;
-}
+export const TextArea = forwardRef<HTMLTextAreaElement, React.TextareaHTMLAttributes<HTMLTextAreaElement>>(
+  function TextArea({ className, ...rest }, ref) {
+    return <textarea ref={ref} rows={5} {...rest} className={`${boxClass} resize-none text-body-small ${className ?? ""}`} />;
+  },
+);
 
 export function FieldLabel({ children }: { children: React.ReactNode }) {
   return <span className="text-body-small text-black">{children}</span>;

@@ -74,10 +74,8 @@ function Question({ area, q }: { area: LifeAreaId; q: number }) {
       }
       above={
         q === 1 ? (
-          <div className="flex flex-col gap-4 rounded-12 bg-primary-100 p-12">
-            <p className="text-caption text-ink-50">Read it aloud first.</p>
-            <p className="text-body-small text-black">{state.lifePurpose.statement || "Your life purpose isn’t written yet."}</p>
-          </div>
+          // The statement is already on the Life Purpose card at the top; this only points to it.
+          <p className="rounded-12 bg-primary-100 p-12 text-body-small text-black">Read your Life Purpose above out loud first.</p>
         ) : q === 3 && topValues.length > 0 ? (
           <div className="flex flex-col gap-8">
             <p className="text-caption text-ink-50">Your top values</p>
