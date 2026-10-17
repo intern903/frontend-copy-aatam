@@ -37,7 +37,8 @@ const routes: Record<string, ShellConfig> = {
   "/visions/all": { header: null, nav: { active: "foundation" } },
   // Values & Qualities discovery: no app header or nav (Figma "VQ - Begin" frames); the two
   // confirmed lists sit in My Foundation with the nav, whose Home goes back to the home page.
-  "/values": { header: null, nav: null },
+  // The intro (Figma "VQ - Begin" 1485:14324) has the nav, on My Foundation.
+  "/values": { header: null, nav: { active: "foundation" } },
   "/values/q": { header: null, nav: null },
   "/values/tradeoff": { header: null, nav: null },
   "/values/checks": { header: null, nav: null },

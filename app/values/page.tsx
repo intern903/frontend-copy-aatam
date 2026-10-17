@@ -18,8 +18,9 @@ export default function ValuesIntroPage() {
   const run = useApp().discovery;
   const resumable = hydrated && run && run.state.stage !== "done" && run.state.answered > 0;
 
+  // The page fills the screen above the nav (nav-clearance = 120px), so Let’s Begin sits just above it.
   return (
-    <main className="flex min-h-screen flex-col items-center px-32 pb-40 pt-header-top text-center">
+    <main className="flex min-h-[calc(100vh-120px)] flex-col items-center px-32 pb-40 pt-header-top text-center">
       <FloatingBack />
       <Image src="/images/aatam-logo.png" alt="Aatam — The Bridge to I" width={215} height={215} priority className="mt-24" />
       <h1 className="mt-32 font-heading text-h2 text-black">What matters most to you</h1>
