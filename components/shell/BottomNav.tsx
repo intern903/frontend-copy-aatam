@@ -41,7 +41,8 @@ export default function BottomNav({ active }: { active: NavItem | null }) {
           // wherever the bar appears; the current one is full white with the underline.
           const body = (
             <>
-              <Image src={item.icon} alt="" width={24} height={24} className={item.key === "companion" ? "-m-[1px]" : ""} />
+              {/* The current tab shows its name and underline only; the icon goes. */}
+              {!on && <Image src={item.icon} alt="" width={24} height={24} className={item.key === "companion" ? "-m-[1px]" : ""} />}
               <span className={`whitespace-nowrap text-caption ${on ? "text-white" : "text-white/70"}`}>{item.label}</span>
               <Image src="/icons/nav-underline.svg" alt="" width={17} height={2} className={on ? "" : "invisible"} />
             </>

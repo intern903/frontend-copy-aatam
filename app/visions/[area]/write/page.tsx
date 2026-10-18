@@ -2,10 +2,10 @@
 
 import Link from "next/link";
 import { notFound, useRouter } from "next/navigation";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import QuestionScreen from "@/components/QuestionScreen";
 import { CheckRow } from "@/components/life-purpose/ui";
-import { GreenButton, GreyButton, SplitButtons } from "@/components/visions/ui";
+import { GreenButton, GreyButton, SplitButtons, useVisionReturn, withFrom } from "@/components/visions/ui";
 import type { LifeAreaId } from "@/lib/data";
 import { setVision, useApp } from "@/lib/store";
 import {
@@ -26,11 +26,16 @@ import {
 // the client wrote before (or empty) and nothing is ever put into it for them.
 export default function WritePage({ params }: { params: { area: string } }) {
   if (!isLifeArea(params.area)) notFound();
-  return <Write area={params.area} />;
+  return (
+    <Suspense>
+      <Write area={params.area} />
+    </Suspense>
+  );
 }
 
 function Write({ area }: { area: LifeAreaId }) {
   const router = useRouter();
+  const back = useVisionReturn(); // the screen this edit was opened from
   const { visions, lifePurpose: lp } = useApp();
   const vision = visions.byLifeArea[area];
   const [draft, setDraft] = useState<string | null>(null);
@@ -53,10 +58,10 @@ function Write({ area }: { area: LifeAreaId }) {
       value={text}
       onChange={setDraft}
       placeholder="I ..."
-      onCancel={() => router.push("/visions")}
+      onCancel={() => router.push(back)}
       onSave={() => {
         if (text.trim()) keep();
-        router.push("/visions");
+        router.push(back);
       }}
       top={
         answered.length > 0 && (
@@ -89,7 +94,7 @@ function Write({ area }: { area: LifeAreaId }) {
           disabled={!text.trim()}
           onClick={() => {
             keep();
-            router.push("/visions");
+            router.push(back);
           }}
         >
           Feels True
@@ -98,7 +103,7 @@ function Write({ area }: { area: LifeAreaId }) {
           disabled={!text.trim() || lp.powerWords.length === 0}
           onClick={() => {
             keep();
-            router.push(`/visions/${area}/deeper`);
+            router.push(withFrom(`/visions/${area}/deeper`, back));
           }}
         >
           Go Deeper

@@ -1,16 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import PopUpSheet from "@/components/PopUpSheet";
 import { PrimaryButton } from "@/components/life-purpose/ui";
 import { LifeAreaCard } from "@/components/settings/LifeAreaImage";
-import { PurposeBanner, VisionCard } from "@/components/visions/ui";
+import { PurposeBanner, PurposeNode, VisionCard } from "@/components/visions/ui";
 import { lifeAreas } from "@/lib/data";
 import { addVisionArea, finalizeVisionAreas, removeVisionArea, useApp } from "@/lib/store";
-import { FOUNDATION } from "@/lib/navigation";
 import { hasVision, pickedAreas } from "@/lib/visions";
 
 // Figma "Vision - Flow Screen 1 / 12 / 11": the Life Purpose card, then "My Vision" and the
@@ -36,26 +34,7 @@ export default function VisionsPage() {
 
   return (
     <main className="flex flex-col items-center gap-20 px-32 pb-40">
-      {/* Figma "Vision - Flow Screen 11": the My Life Purpose node (68px, star) at (32, 82) with
-          its title and line, joined to the card below by the thread. It leads to My Foundation. */}
-      <div className="relative -mx-32 h-[154px] self-stretch">
-        <Link href={FOUNDATION} aria-label="My Life Purpose, back to My Foundation" className="absolute left-32 top-[82px] z-10">
-          <span className="flex size-node items-center justify-center rounded-pill border-hairline border-dashed border-primary-600 bg-background">
-            <span className="flex size-node-inner items-center justify-center rounded-pill bg-primary-100">
-              <Image src="/icons/star-green.svg" alt="" width={32} height={32} />
-            </span>
-          </span>
-        </Link>
-        <p className="absolute left-[108px] top-[87px] font-heading text-h4 text-black">My Life Purpose</p>
-        <p className="absolute left-[108px] top-[113px] w-[155px] text-caption text-ink-50">The thread through every moment when I’m most alive</p>
-        <Image
-          src="/images/life-purpose/connector-visions.svg"
-          alt=""
-          width={111}
-          height={84}
-          className="pointer-events-none absolute left-0 top-[116px] z-[1] -scale-y-100"
-        />
-      </div>
+      <PurposeNode />
       <div>
         <PurposeBanner />
       </div>

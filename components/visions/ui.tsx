@@ -2,11 +2,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { StatementText } from "@/components/life-purpose/ui";
 import { LifeAreaCard } from "@/components/settings/LifeAreaImage";
 import type { LifeAreaId, Vision } from "@/lib/data";
 import { useApp } from "@/lib/store";
+import { FOUNDATION } from "@/lib/navigation";
 import { areaColour, areaName } from "@/lib/visions";
 
 // Building blocks for the Vision screens (Figma "Vision - Flow Screen 1–12", "Vision - Final Screen").
@@ -38,6 +40,47 @@ export function PurposeBanner() {
       </div>
     </Link>
   );
+}
+
+/**
+ * Figma "Vision - Flow Screen 11": the My Life Purpose node (68px, star) at (32, 82) with its
+ * title and line, joined to the Life Purpose card below by the thread. It leads to My Foundation,
+ * so it is the Vision overview screens' way back. Sits at the top of the page (no pt-header-top).
+ */
+export function PurposeNode() {
+  return (
+    <div className="relative -mx-32 h-[154px] self-stretch">
+      <Link href={FOUNDATION} aria-label="My Life Purpose, back to My Foundation" className="absolute left-32 top-[82px] z-10">
+        <span className="flex size-node items-center justify-center rounded-pill border-hairline border-dashed border-primary-600 bg-background">
+          <span className="flex size-node-inner items-center justify-center rounded-pill bg-primary-100">
+            <Image src="/icons/star-green.svg" alt="" width={32} height={32} />
+          </span>
+        </span>
+      </Link>
+      <p className="absolute left-[108px] top-[87px] font-heading text-h4 text-black">My Life Purpose</p>
+      <p className="absolute left-[108px] top-[113px] w-[155px] text-caption text-ink-50">The thread through every moment when I’m most alive</p>
+      <Image
+        src="/images/life-purpose/connector-visions.svg"
+        alt=""
+        width={111}
+        height={84}
+        className="pointer-events-none absolute left-0 top-[116px] z-[1] -scale-y-100"
+      />
+    </div>
+  );
+}
+
+/**
+ * Where a vision edit returns to: the screen it was opened from (?from=), else the areas screen.
+ * Editing from "My Vision" (all visions) and cancelling goes back there, not to finalising.
+ */
+export function useVisionReturn() {
+  const from = useSearchParams().get("from");
+  return from && from.startsWith("/visions") ? from : "/visions";
+}
+/** Carries the return screen on to the next step of the same edit. */
+export function withFrom(path: string, from: string) {
+  return from === "/visions" ? path : `${path}${path.includes("?") ? "&" : "?"}from=${encodeURIComponent(from)}`;
 }
 
 /** Cancel (outline) · area name (H3) · Save (Primary/600) — the row above each Vision step. */

@@ -3,6 +3,7 @@
 import { notFound, useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useState } from "react";
 import QuestionScreen from "@/components/QuestionScreen";
+import { useVisionReturn, withFrom } from "@/components/visions/ui";
 import { CheckRow, PrimaryButton } from "@/components/life-purpose/ui";
 import type { LifeAreaId } from "@/lib/data";
 import { setVision, useApp } from "@/lib/store";
@@ -30,6 +31,7 @@ function Deeper({ area }: { area: LifeAreaId }) {
 
 function Word({ area, n }: { area: LifeAreaId; n: number }) {
   const router = useRouter();
+  const back = useVisionReturn(); // the screen this edit was opened from
   const { visions, lifePurpose: lp } = useApp();
   const vision = visions.byLifeArea[area];
   const word = lp.powerWords[n - 1] ?? "";
@@ -53,10 +55,10 @@ function Word({ area, n }: { area: LifeAreaId; n: number }) {
       value={text}
       onChange={setDraft}
       placeholder="I ..."
-      onCancel={() => router.push("/visions")}
+      onCancel={() => router.push(back)}
       onSave={() => {
         keep();
-        router.push("/visions");
+        router.push(back);
       }}
       intro={
         <div className="flex flex-col gap-8 rounded-24 bg-primary-100 p-16">
@@ -77,7 +79,7 @@ function Word({ area, n }: { area: LifeAreaId; n: number }) {
       <PrimaryButton
         onClick={() => {
           keep();
-          router.push(last ? "/visions" : `/visions/${area}/deeper?word=${n + 1}`);
+          router.push(last ? back : withFrom(`/visions/${area}/deeper?word=${n + 1}`, back));
         }}
       >
         {last ? "Feels True" : "Next"}

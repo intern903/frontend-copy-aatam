@@ -73,6 +73,9 @@ export function parentOf(pathname: string, search: URLSearchParams = new URLSear
   const vision = path.match(/^\/visions\/([^/]+)\/(questions|write|deeper|board)$/);
   if (vision) {
     const [, area, step] = vision;
+    // Opened as an edit from another screen (?from=): back returns there, as Cancel does.
+    const from = search.get("from");
+    if (from?.startsWith("/visions") && step !== "deeper") return from;
     if (step === "questions") {
       const q = Number(search.get("q")) || 1;
       return q > 1 ? `/visions/${area}/questions?q=${q - 1}` : "/visions";
@@ -80,7 +83,10 @@ export function parentOf(pathname: string, search: URLSearchParams = new URLSear
     if (step === "write") return `/visions/${area}/questions?q=4`;
     if (step === "deeper") {
       const n = Number(search.get("word")) || 1;
-      return n > 1 ? `/visions/${area}/deeper?word=${n - 1}` : `/visions/${area}/write`;
+      const keep = from?.startsWith("/visions") ? `from=${encodeURIComponent(from)}` : "";
+      return n > 1
+        ? `/visions/${area}/deeper?word=${n - 1}${keep ? `&${keep}` : ""}`
+        : `/visions/${area}/write${keep ? `?${keep}` : ""}`;
     }
     return `/visions/${area}/write`; // board
   }
