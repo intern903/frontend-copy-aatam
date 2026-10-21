@@ -15,20 +15,21 @@ function greeting(name: string) {
 export default function HomeHeader({ name }: { name: string }) {
   return (
     <header className="absolute left-32 top-[62px] flex w-content items-center justify-between">
-      <div className="flex items-center gap-8">
+      <div className="flex min-w-0 flex-1 items-center gap-8">
         <Link
           href="/settings"
           aria-label="Settings"
-          className="flex size-avatar items-center justify-center rounded-pill bg-white/10"
+          className="flex size-avatar shrink-0 items-center justify-center rounded-pill bg-white/10"
         >
           <Image src="/icons/user.svg" alt="" width={32} height={32} />
         </Link>
-        {/* Set after mount: the time of day is the visitor's, not the server's. */}
-        <p className="whitespace-nowrap font-heading text-h4 text-white" suppressHydrationWarning>
+        {/* Set after mount: the time of day is the visitor's, not the server's. One line always:
+            Body Medium (not H4) so "Good afternoon, Rohan" fits beside the two buttons. */}
+        <p className="min-w-0 truncate font-heading text-body-medium text-white" suppressHydrationWarning>
           {greeting(name)}
         </p>
       </div>
-      <div className="flex items-center gap-4">
+      <div className="flex shrink-0 items-center gap-4">
         <button
           type="button"
           aria-label="Notifications"

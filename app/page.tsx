@@ -65,6 +65,7 @@ export default function HomePage() {
             label={m.label}
             progress={getModuleProgress(state, m.id)}
             locked={m.id !== "myself" && !cifDone(state)}
+            next={m.id === "myself" && !cifDone(state)}
             onClick={() => open(m.id)}
           />
         </div>
@@ -80,11 +81,9 @@ export default function HomePage() {
         style={{ left: 170, top: 560 }}
       />
 
-      {/* My Journey — the train; tilted 9.5° as in Figma */}
-      <div
-        className="absolute flex items-center justify-center"
-        style={{ left: 291.06, top: 539.56, width: 76.29, height: 31.94 }}
-      >
+      {/* My Journey — the train; tilted 9.5° as in Figma. Held from the right edge, not Figma's
+          left, so a wider label (lock, tick or percentage) never runs off the screen. */}
+      <div className="absolute flex items-center justify-end" style={{ right: 20, top: 539.56, height: 31.94 }}>
         <div className="rotate-[9.5deg]">
           <ModuleLabel
             label="My Journey"
