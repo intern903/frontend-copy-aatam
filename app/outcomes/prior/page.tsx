@@ -20,7 +20,10 @@ export default function PriorPage() {
   const past = outcomes.pastPeriods;
   const [chosen, setChosen] = useState(0);
   const [sheet, setSheet] = useState<"qualities" | "outcomes" | null>(null);
-  const [quality, setQuality] = useState<string | null>(null); // null = the average
+  // Well-being lines on the trend: any mix of the average and single qualities, all at once.
+  const AVERAGE = "Well-being Average";
+  const [shown, setShown] = useState<string[]>([AVERAGE]);
+  const toggleLine = (name: string) => setShown((s) => (s.includes(name) ? s.filter((x) => x !== name) : [...s, name]));
   const [series, setSeries] = useState({ overall: true, priority: true });
 
   const points = trend(past, wellbeing.pastScores);
@@ -78,17 +81,17 @@ export default function PriorPage() {
         ) : (
           <>
             <div className="flex gap-8">
-              <PillButton label="My Well-being" count={1} onClick={() => setSheet("qualities")} />
+              <PillButton label="My Well-being" count={shown.length} onClick={() => setSheet("qualities")} />
               <PillButton label="My Outcomes" count={Number(series.overall) + Number(series.priority)} onClick={() => setSheet("outcomes")} />
             </div>
             <TrendChart
               points={points}
               showOverall={series.overall}
               showPriority={series.priority}
-              line={{
-                label: quality ?? "Well-being Average",
-                values: points.map((pt) => (quality ? pt.scores[quality] ?? null : pt.wellbeing)),
-              }}
+              lines={shown.map((name) => ({
+                label: name,
+                values: points.map((pt) => (name === AVERAGE ? pt.wellbeing : pt.scores[name] ?? null)),
+              }))}
             />
           </>
         )}
@@ -97,9 +100,9 @@ export default function PriorPage() {
       {sheet === "qualities" && (
         <PopUpSheet title="Select my qualities" onClose={() => setSheet(null)} variant="bottom">
           <div className="flex flex-wrap gap-8">
-            <Chip label="Average" on={quality === null} onClick={() => setQuality(null)} />
+            <Chip label="Average" on={shown.includes(AVERAGE)} onClick={() => toggleLine(AVERAGE)} />
             {qualityNames.map((q) => (
-              <Chip key={q} label={q} on={quality === q} onClick={() => setQuality(q)} />
+              <Chip key={q} label={q} on={shown.includes(q)} onClick={() => toggleLine(q)} />
             ))}
           </div>
         </PopUpSheet>

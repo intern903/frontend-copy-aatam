@@ -113,7 +113,7 @@ export function FlowHeader({
   );
 }
 
-/** Two equal buttons side by side (Vision - Flow Screen 6: "Feels True" grey, "Go Deeper" green). */
+/** Two equal buttons side by side (Vision - Flow Screen 6: "Feels mine" grey, "Go Deeper" green). */
 export function SplitButtons({ children }: { children: React.ReactNode }) {
   return <div className="flex w-full gap-8">{children}</div>;
 }

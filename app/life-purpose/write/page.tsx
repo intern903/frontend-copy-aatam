@@ -73,7 +73,7 @@ export default function WritePage() {
             router.push("/life-purpose");
           }}
         >
-          Draft Feels True
+          Draft feels mine
         </PrimaryButton>
       </div>
     </main>

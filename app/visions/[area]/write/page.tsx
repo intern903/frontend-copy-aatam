@@ -3,8 +3,9 @@
 import Link from "next/link";
 import { notFound, useRouter } from "next/navigation";
 import { Suspense, useState } from "react";
+import PopUpSheet from "@/components/PopUpSheet";
 import QuestionScreen from "@/components/QuestionScreen";
-import { CheckRow } from "@/components/life-purpose/ui";
+import { CheckRow, PrimaryButton } from "@/components/life-purpose/ui";
 import { GreenButton, GreyButton, SplitButtons, useVisionReturn, withFrom } from "@/components/visions/ui";
 import type { LifeAreaId } from "@/lib/data";
 import { setVision, useApp } from "@/lib/store";
@@ -47,6 +48,10 @@ function Write({ area }: { area: LifeAreaId }) {
   const answered = VISION_QUESTIONS.filter((q) => vision?.answers[q.key]?.trim());
 
   const keep = () => setVision(area, { statement: text.trim() });
+  // Figma "Want to go deeper" (1642:1917): Save asks whether to take the vision through every
+  // power word. Yes → the deeper screens; No → saved, back to where the edit started.
+  const [askDeeper, setAskDeeper] = useState(false);
+  const canGoDeeper = text.trim().length > 0 && lp.powerWords.length > 0;
 
   return (
     <QuestionScreen
@@ -60,6 +65,7 @@ function Write({ area }: { area: LifeAreaId }) {
       placeholder="I ..."
       onCancel={() => router.push(back)}
       onSave={() => {
+        if (canGoDeeper) return setAskDeeper(true);
         if (text.trim()) keep();
         router.push(back);
       }}
@@ -97,7 +103,7 @@ function Write({ area }: { area: LifeAreaId }) {
             router.push(back);
           }}
         >
-          Feels True
+          Feels mine
         </GreyButton>
         <GreenButton
           disabled={!text.trim() || lp.powerWords.length === 0}
@@ -112,6 +118,31 @@ function Write({ area }: { area: LifeAreaId }) {
       <Link href={`/visions/${area}/board`} className="text-center text-body-small text-primary-600 underline">
         My vision board
       </Link>
+      {askDeeper && (
+        <PopUpSheet title="Want to go deeper?" radius="md" closable={false} onClose={() => setAskDeeper(false)}>
+          <p className="text-body text-black">Take my vision through every power word.</p>
+          <div className="flex flex-col gap-6">
+            <PrimaryButton
+              onClick={() => {
+                keep();
+                router.push(withFrom(`/visions/${area}/deeper`, back));
+              }}
+            >
+              Yes, go deeper
+            </PrimaryButton>
+            <button
+              type="button"
+              onClick={() => {
+                keep();
+                router.push(back);
+              }}
+              className="w-full rounded-8 bg-cancel py-16 text-button-cta text-black"
+            >
+              No, save
+            </button>
+          </div>
+        </PopUpSheet>
+      )}
     </QuestionScreen>
   );
 }

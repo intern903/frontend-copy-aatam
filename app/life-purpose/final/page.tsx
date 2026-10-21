@@ -63,7 +63,7 @@ export default function FinalPage() {
           ) : (
             // Not in Figma: until the purpose feels true, the card leads back into the module.
             <div className="flex flex-col items-start gap-12 rounded-12 bg-white/10 p-16 backdrop-blur-[2px]">
-              <p className="text-body text-white">Your life purpose will appear here once it feels true.</p>
+              <p className="text-body text-white">Your life purpose will appear here once it feels like yours.</p>
               <Link href="/life-purpose" className="rounded-8 bg-primary-600 px-16 py-8 text-button-cta text-white">
                 {lp.status === "empty" ? "Find my life purpose" : "Continue my life purpose"}
               </Link>

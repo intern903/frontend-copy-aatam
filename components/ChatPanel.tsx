@@ -39,7 +39,7 @@ export default function ChatPanel({
   firstMessage?: string;
 }) {
   const router = useRouter();
-  const { user, outcomes } = useApp();
+  const { outcomes } = useApp();
   const [messages, setMessages] = useState<Message[]>([]);
   const [next, setNext] = useState(0); // the next scripted line
   const [typing, setTyping] = useState(false);
@@ -92,7 +92,6 @@ export default function ChatPanel({
     onClose();
     router.push(href);
   };
-  const first = (user?.name ?? "").trim().split(/\s+/)[0];
   const started = messages.length > 0 || typing;
 
   if (saving !== null) {
@@ -137,11 +136,8 @@ export default function ChatPanel({
                 <Image src="/icons/arrow-left.svg" alt="" width={24} height={24} />
               </button>
             </div>
-            <h1 className="font-heading text-h1 text-ink-brown">
-              Hey{first ? `, ${first}` : ""}!
-              <br />
-              What’s on your mind?
-            </h1>
+            {/* Not a greeting: the companion is mid-conversation with the client, not meeting them. */}
+            <h1 className="font-heading text-h1 text-ink-brown">What’s on your mind today?</h1>
             <div className="flex flex-col gap-12">
               <StartCard
                 tone="blue"

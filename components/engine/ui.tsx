@@ -137,7 +137,7 @@ function PurposePopup({ onClose }: { onClose: () => void }) {
           ) : (
             <div className="rounded-12 bg-white/10 p-16 backdrop-blur-[2px]">
               <p className="text-body text-white">
-                Your life purpose will appear here once it feels true.
+                Your life purpose will appear here once it feels like yours.
               </p>
             </div>
           )}

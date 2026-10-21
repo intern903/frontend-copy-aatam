@@ -54,6 +54,7 @@ export default function HomePage() {
           label="My Life Purpose"
           size="h4"
           progress={getModuleProgress(state, "lifePurpose")}
+          locked={!cifDone(state)}
           onClick={() => open("lifePurpose")}
         />
       </div>
@@ -63,6 +64,7 @@ export default function HomePage() {
           <ModuleLabel
             label={m.label}
             progress={getModuleProgress(state, m.id)}
+            locked={m.id !== "myself" && !cifDone(state)}
             onClick={() => open(m.id)}
           />
         </div>
@@ -87,6 +89,7 @@ export default function HomePage() {
           <ModuleLabel
             label="My Journey"
             progress={getModuleProgress(state, "journey")}
+            locked={!cifDone(state)}
             onClick={() => open("journey")}
           />
         </div>

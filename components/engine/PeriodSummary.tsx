@@ -50,7 +50,8 @@ export function EmergedCodes({ codes }: { codes: LifeCode[] }) {
 /** A small card with a strip of the area's colour down its left edge, scrolled sideways. */
 function Strip({ colour, children }: { colour: string; children: React.ReactNode }) {
   return (
-    <div className={`shrink-0 rounded-8 pl-4 ${colour}`}>
+    // Outlined all round in the area's colour, with the wider strip down the left (Figma "RG - Prior").
+    <div className={`min-w-0 rounded-8 border pl-4 ${colour} ${colour.replace("bg-", "border-")}`}>
       <div className="flex h-full flex-col justify-center rounded-8 bg-white px-16 py-12">{children}</div>
     </div>
   );
@@ -59,11 +60,13 @@ function Strip({ colour, children }: { colour: string; children: React.ReactNode
 export function OutcomeStrips({ outcomes }: { outcomes: Outcome[] }) {
   return (
     <Labelled label="My Outcomes">
-      <div className="-mr-16 flex gap-8 overflow-x-auto pb-2 pr-16">
+      {/* Stacked, full width: every card shows whole, with its coloured edge and outline (they used
+          to scroll sideways and were cut off at the card's edge). */}
+      <div className="flex flex-col gap-8">
         {outcomes.map((o) => (
           <Strip key={o.id} colour={areaColour(o.lifeArea).solid}>
             <DotTags tags={[areaName(o.lifeArea), o.type]} />
-            <p className="max-w-[200px] text-body-small text-black">{o.text}</p>
+            <p className="text-body-small text-black">{o.text}</p>
             <p className="text-caption text-ink-60">
               {o.done ? "Done" : "Not done"}
               {o.type === "Being" && o.score !== null ? ` · ${o.score}/10` : ""}
@@ -80,13 +83,12 @@ const STRIP_TONES = ["bg-primary-500", "bg-pink-500", "bg-blue-500", "bg-yellow-
 export function WellbeingStrips({ scores }: { scores: Record<string, number> }) {
   return (
     <Labelled label="My well-being">
-      <div className="-mr-16 flex gap-8 overflow-x-auto pb-2 pr-16">
+      <div className="grid grid-cols-2 gap-8">
         {Object.entries(scores).map(([quality, score], i) => (
           <Strip key={quality} colour={STRIP_TONES[i % STRIP_TONES.length]}>
-            <span className="flex items-center gap-8 whitespace-nowrap">
-              <span className="text-body-small text-black">{quality}</span>
-              <span className="size-2 rounded-2 bg-ink-60" />
-              <span className="font-mono text-h3 text-black">{score}/10</span>
+            <span className="flex items-center justify-between gap-8">
+              <span className="min-w-0 truncate text-body-small text-black">{quality}</span>
+              <span className="font-mono text-h4 text-black">{score}/10</span>
             </span>
           </Strip>
         ))}

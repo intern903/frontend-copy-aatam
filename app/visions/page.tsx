@@ -89,7 +89,7 @@ export default function VisionsPage() {
             </PrimaryButton>
           </div>
         ) : (
-          withVision.length > 0 && <PrimaryButton href="/visions/all">Feels True</PrimaryButton>
+          withVision.length > 0 && <PrimaryButton href="/visions/all">Feels mine</PrimaryButton>
         )}
       </div>
 

@@ -19,6 +19,7 @@ import {
   Stepper,
 } from "@/components/engine/ui";
 import { PrimaryButton } from "@/components/life-purpose/ui";
+import { Toggle } from "@/components/settings/SettingsList";
 import { useHydrated } from "@/components/values/ui";
 import type { LifeAreaId, OutcomeType } from "@/lib/data";
 import { addDraftOutcome, cancelDraft, removeDraftOutcome, useApp } from "@/lib/store";
@@ -110,12 +111,9 @@ export default function NewOutcomesPage() {
               <ChoiceCard title="Do not map" sub="Keep it standalone" on={form.goal === null} onClick={() => set({ goal: null })} />
             </div>
           </div>
-          <div className="flex flex-col gap-12">
+          <div className="flex items-center justify-between gap-12">
             <FieldLabel>Do I want to track this outcome?</FieldLabel>
-            <div className="flex gap-8">
-              <ChoiceCard title="Why not" on={form.track === true} onClick={() => set({ track: true })} />
-              <ChoiceCard title="No need" on={form.track === false} onClick={() => set({ track: false })} />
-            </div>
+            <Toggle checked={form.track === true} onChange={(on) => set({ track: on })} label="Do I want to track this outcome?" />
           </div>
         </section>
 

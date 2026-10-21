@@ -82,7 +82,7 @@ function Word({ area, n }: { area: LifeAreaId; n: number }) {
           router.push(last ? back : withFrom(`/visions/${area}/deeper?word=${n + 1}`, back));
         }}
       >
-        {last ? "Feels True" : "Next"}
+        {last ? "Feels mine" : "Next"}
       </PrimaryButton>
     </QuestionScreen>
   );

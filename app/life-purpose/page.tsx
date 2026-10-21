@@ -115,14 +115,23 @@ function DraftView({ initialPopup }: { initialPopup: Popup | null }) {
         <HelpButton onClick={() => setPopup("faq")} />
       </div>
 
+      {lp.bodyFeel && (
+        // Where the client feels it in their body (written with Dinesh in session).
+        <div className="mt-20 flex w-content items-center justify-center gap-12 rounded-pill bg-primary-600 px-12 py-8">
+          <span className="size-12 rounded-pill bg-white" />
+          <span className="text-body-medium text-white">I feel this most on my {lp.bodyFeel}.</span>
+        </div>
+      )}
+
       <div className="relative mt-20 h-draft-card overflow-hidden rounded-24 shadow-image">
         <Image src="/images/life-purpose/purpose-sky.png" alt="" fill sizes="329px" className="object-cover object-[50%_30%]" />
         <div className="absolute inset-16 flex flex-col justify-between">
           <p className="text-body-small text-white">Draft</p>
           <StatementGlass statement={lp.statement} />
           <div className="flex items-center justify-between">
+            {/* "Feels mine", not "Feels true": this is a felt judgement, not a factual one (Dinesh). */}
             <button type="button" onClick={() => setPopup("sure")} className="rounded-8 bg-primary-500 px-12 py-8 text-button-cta text-white">
-              Feels True
+              Feels mine
             </button>
             <span className="flex items-center gap-8">
               <button type="button" aria-label="Edit draft" onClick={() => setPopup("edit")} className="p-2">
@@ -167,11 +176,14 @@ function DraftView({ initialPopup }: { initialPopup: Popup | null }) {
       {popup === "edit" && <EditDraft onClose={() => setPopup(null)} />}
       {popup === "history" && <PreviousDrafts onClose={() => setPopup(null)} />}
       {popup === "sure" && (
-        // Figma "LP - Surity": no close X; the two buttons are the way out.
-        <PopUpSheet title="Does this feel true?" radius="md" closable={false} onClose={() => setPopup(null)}>
-          <p className="text-body text-black">It is a visceral experience. You will know it when you get it.</p>
+        // Figma "LP - Surity": no close X; the two buttons are the way out. The body names where the
+        // client feels it (Figma: "Take a breath, feel it in your Jaw").
+        <PopUpSheet title="Does this feel like mine?" radius="md" closable={false} onClose={() => setPopup(null)}>
+          <p className="text-body text-black">
+            {lp.bodyFeel ? `Take a breath, feel it in your ${lp.bodyFeel}.` : "Take a breath, and feel it."}
+          </p>
           <div className="flex flex-col gap-6">
-            <PrimaryButton onClick={() => setPopup("congrats")}>Yes, it feels true</PrimaryButton>
+            <PrimaryButton onClick={() => setPopup("congrats")}>Yes, it feels mine</PrimaryButton>
             <button type="button" onClick={() => setPopup(null)} className="w-full rounded-8 bg-cancel py-16 text-button-cta text-black">
               Not yet, I’ll come back
             </button>
@@ -182,7 +194,7 @@ function DraftView({ initialPopup }: { initialPopup: Popup | null }) {
   );
 }
 
-/** Figma "LP - Edit Draft": the client's own statement in a box, the checklist, Draft Feels True. */
+/** Figma "LP - Edit Draft": the client's own statement in a box, the checklist, "Draft feels mine". */
 function EditDraft({ onClose }: { onClose: () => void }) {
   const { lifePurpose: lp } = useApp();
   const [text, setText] = useState(lp.statement);
@@ -210,7 +222,7 @@ function EditDraft({ onClose }: { onClose: () => void }) {
           onClose();
         }}
       >
-        Draft Feels True
+        Draft feels mine
       </PrimaryButton>
     </PopUpSheet>
   );

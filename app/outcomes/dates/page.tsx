@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { CancelGameSheet, Chip, EngineFrame, EngineTop, GreyCta, SectionHead, StackedButtons, Stepper } from "@/components/engine/ui";
@@ -11,7 +10,8 @@ import { cancelDraft, setDraftEnd, useApp } from "@/lib/store";
 
 // Figma "RG - New Date Selection Empty / Selected": the next period starts today (fixed) and the
 // client picks when it ends, by date or with 2–5 weeks. The end is meant to land on the next
-// session with Dinesh, so booking it sits right here. Saved to the period being built.
+// session with Dinesh; booking it happens when the game starts (Prioritize → Start New Game).
+// Saved to the period being built.
 
 const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
@@ -68,12 +68,6 @@ export default function DatesPage() {
             My game runs for {days} days, ending on {shortDate(end!)}.
           </p>
         )}
-        <div className="flex flex-col gap-12 rounded-24 bg-primary-500 p-16">
-          <p className="font-heading text-h4 text-white">Book session with Dinesh</p>
-          <Link href="/book-call" className="self-end rounded-8 bg-white px-16 py-12 text-button-cta text-black">
-            Book
-          </Link>
-        </div>
       </div>
 
       <StackedButtons>
