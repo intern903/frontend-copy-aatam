@@ -8,7 +8,9 @@ import { forwardRef, useImperativeHandle, useRef, useState } from "react";
 // Pure CSS + the Web Animations API: no library, nothing to download but a 24px SVG.
 
 const SIZE = 28;
-const FLIGHT_MS = 650;
+// Unhurried: time grows with distance (a short hop ~1.1s, across the screen ~1.8s).
+const flightMs = (dist: number) => Math.round(Math.min(1800, Math.max(1100, 900 + dist * 2.2)));
+const STEPS = 40; // points sampled along the path, so the curve and sway stay smooth
 
 export type ButterflyHandle = {
   /** Fly to the element and perch on its top-left edge. Resolves when it lands. */
@@ -32,19 +34,30 @@ export default forwardRef<ButterflyHandle, { left: number; top: number }>(functi
       if (el) el.style.transform = `translate(${x}px, ${y}px)`;
       return Promise.resolve();
     }
-    // An arc: up and over, leaning into the direction of travel.
-    const lean = Math.max(-25, Math.min(25, (x - from.x) / 8));
-    const midX = (from.x + x) / 2;
-    const midY = Math.min(from.y, y) - 50;
+    // A soft curve (quadratic Bézier) that rises above both ends, with a gentle side-to-side sway
+    // and a lean into the direction of travel, like a butterfly drifting rather than a dart.
+    const dx = x - from.x;
+    const dy = y - from.y;
+    const dist = Math.hypot(dx, dy);
+    const cx = from.x + dx / 2 + dy * 0.15;
+    const cy = Math.min(from.y, y) - Math.min(90, 40 + dist * 0.15);
+    const lean = Math.max(-18, Math.min(18, dx / 10));
+    const frames: Keyframe[] = [];
+    for (let i = 0; i <= STEPS; i++) {
+      const t = i / STEPS;
+      const u = 1 - t;
+      const sway = Math.sin(t * Math.PI * 3) * 6 * Math.sin(t * Math.PI); // fades in and out
+      const px = u * u * from.x + 2 * u * t * cx + t * t * x + sway;
+      const py = u * u * from.y + 2 * u * t * cy + t * t * y;
+      const tilt = lean * Math.sin(t * Math.PI) + Math.cos(t * Math.PI * 3) * 4 * Math.sin(t * Math.PI);
+      frames.push({ transform: `translate(${px.toFixed(1)}px, ${py.toFixed(1)}px) rotate(${tilt.toFixed(1)}deg)` });
+    }
     setFlying(true);
-    const anim = el.animate(
-      [
-        { transform: `translate(${from.x}px, ${from.y}px) rotate(0deg)` },
-        { transform: `translate(${midX}px, ${midY}px) rotate(${lean}deg)`, offset: 0.5 },
-        { transform: `translate(${x}px, ${y}px) rotate(0deg)` },
-      ],
-      { duration: FLIGHT_MS, easing: "cubic-bezier(0.45, 0.05, 0.35, 1)", fill: "forwards" },
-    );
+    const anim = el.animate(frames, {
+      duration: flightMs(dist),
+      easing: "cubic-bezier(0.4, 0, 0.3, 1)", // eases off and settles gently onto the label
+      fill: "forwards",
+    });
     return anim.finished.then(() => {
       el.style.transform = `translate(${x}px, ${y}px)`;
       anim.cancel();

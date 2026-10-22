@@ -209,7 +209,7 @@ const config: Config = {
         rise: "rise 500ms ease-out",
         "card-turn": "card-turn 250ms ease-out",
         flap: "flap 1.6s ease-in-out infinite",
-        "flap-fast": "flap 180ms ease-in-out infinite",
+        "flap-fast": "flap 340ms ease-in-out infinite",
         hover: "hover 1.8s ease-in-out infinite alternate",
       },
       size: {
