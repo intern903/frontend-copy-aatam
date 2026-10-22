@@ -24,8 +24,8 @@ export default function AllVisionsPage() {
       </div>
       <div className="flex w-content flex-col gap-20">
         <div className="flex flex-col gap-4">
-          <h1 className="font-heading text-h3 text-black">My Vision</h1>
-          <p className="text-caption text-ink-brown">My Life Purpose, expressed in each area of my life</p>
+          <h1 className="font-heading text-h3 text-black">Vision</h1>
+          <p className="text-caption text-ink-brown">Life Purpose, expressed in each area of my life</p>
         </div>
         {done.length === 0 ? (
           <>

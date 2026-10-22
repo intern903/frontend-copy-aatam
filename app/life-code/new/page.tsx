@@ -14,7 +14,7 @@ import { addLifeCode, updateLifeCode, useApp } from "@/lib/store";
 //                                       from the close of a period: tagged with that source and
 //                                       period, then back to where the client was.
 // Saved to store.lifeCodes.
-const SOURCES: LifeCodeSource[] = ["My Outcomes", "My Well-Being", "Session", "My Vision", "Added by hand", "Chat"];
+const SOURCES: LifeCodeSource[] = ["Outcomes", "Well-Being", "Session", "Vision", "Added by hand", "Chat"];
 
 export default function NewLifeCodePage() {
   return (

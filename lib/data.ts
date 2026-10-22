@@ -171,7 +171,7 @@ export type PastScores = {
 export type LifeCodeType = "micro" | "macro";
 
 // Where a life code was written: a fact about the write, recorded automatically.
-export type LifeCodeSource = "My Outcomes" | "My Well-Being" | "Session" | "My Vision" | "Added by hand" | "Chat";
+export type LifeCodeSource = "Outcomes" | "Well-Being" | "Session" | "Vision" | "Added by hand" | "Chat";
 
 // The same shape everywhere (typed by hand, captured in the companion chat, or opened later):
 // the statement, then the three questions.
@@ -214,39 +214,12 @@ export const lifeAreas: LifeArea[] = [
 ];
 
 // ---------- Life area images (Settings → Life Area Images) ----------
-// Figma provides images for Career, Health, Family and Personal Development only;
-// the other areas reuse those four in turn (never the same picture as the card beside them)
-// until they get their own.
+// Figma "DT - Life Area" (1661:9899): every area has its own photo. Default until the client
+// uploads one in Settings.
 
-const figmaAreaImages: Partial<Record<LifeAreaId, string>> = {
-  career: "/images/life-areas/career.png",
-  health: "/images/life-areas/health.png",
-  family: "/images/life-areas/family.png",
-  "personal-development": "/images/life-areas/personal-development.png",
-};
-const reusedImages = Object.values(figmaAreaImages) as string[];
-
-export const lifeAreaImageDefaults = (() => {
-  const result = {} as Record<LifeAreaId, string>;
-  let turn = 0;
-  lifeAreas.forEach((area, i) => {
-    const own = figmaAreaImages[area.id];
-    if (own) {
-      result[area.id] = own;
-      return;
-    }
-    const previous = i > 0 ? result[lifeAreas[i - 1].id] : undefined;
-    const next = lifeAreas[i + 1] && figmaAreaImages[lifeAreas[i + 1].id];
-    let pick = reusedImages[turn % reusedImages.length];
-    for (let tries = 0; (pick === previous || pick === next) && tries < reusedImages.length; tries++) {
-      turn++;
-      pick = reusedImages[turn % reusedImages.length];
-    }
-    result[area.id] = pick;
-    turn++;
-  });
-  return result;
-})();
+export const lifeAreaImageDefaults = Object.fromEntries(
+  lifeAreas.map((a) => [a.id, `/images/life-areas/${a.id}.webp`]),
+) as Record<LifeAreaId, string>;
 
 // ---------- Goals (Key Results) ----------
 
@@ -557,7 +530,7 @@ export const lifeCodes: LifeCode[] = [
     allLifeAreas: false,
     type: "micro",
     howOrWhenToUse: "Monday, Wednesday and Friday mornings.",
-    addedThrough: "My Outcomes",
+    addedThrough: "Outcomes",
     periodId: "p-5",
     status: "active",
   },
@@ -568,7 +541,7 @@ export const lifeCodes: LifeCode[] = [
     allLifeAreas: false,
     type: "macro",
     howOrWhenToUse: "Every weekday evening.",
-    addedThrough: "My Vision",
+    addedThrough: "Vision",
     periodId: "p-4",
     status: "active",
   },
@@ -579,7 +552,7 @@ export const lifeCodes: LifeCode[] = [
     allLifeAreas: false,
     type: "micro",
     howOrWhenToUse: "In every design review and whenever someone brings me a problem.",
-    addedThrough: "My Outcomes",
+    addedThrough: "Outcomes",
     periodId: "p-5",
     status: "active",
   },
@@ -590,7 +563,7 @@ export const lifeCodes: LifeCode[] = [
     allLifeAreas: false,
     type: "macro",
     howOrWhenToUse: "On the first of every month, no matter how the month looks.",
-    addedThrough: "My Vision",
+    addedThrough: "Vision",
     periodId: "p-6",
     status: "active",
   },
@@ -601,7 +574,7 @@ export const lifeCodes: LifeCode[] = [
     allLifeAreas: false,
     type: "macro",
     howOrWhenToUse: "As soon as I notice I'm avoiding a conversation with a client or someone on the team.",
-    addedThrough: "My Outcomes",
+    addedThrough: "Outcomes",
     periodId: "p-6",
     status: "active",
   },
@@ -612,7 +585,7 @@ export const lifeCodes: LifeCode[] = [
     allLifeAreas: false,
     type: "micro",
     howOrWhenToUse: "At bedtime, and whenever she starts with 'Amma, guess what'.",
-    addedThrough: "My Outcomes",
+    addedThrough: "Outcomes",
     periodId: "p-5",
     status: "active",
   },
@@ -623,7 +596,7 @@ export const lifeCodes: LifeCode[] = [
     allLifeAreas: false,
     type: "macro",
     howOrWhenToUse: "The last Saturday afternoon of every month.",
-    addedThrough: "My Vision",
+    addedThrough: "Vision",
     periodId: "p-4",
     status: "active",
   },
@@ -634,7 +607,7 @@ export const lifeCodes: LifeCode[] = [
     allLifeAreas: false,
     type: "micro",
     howOrWhenToUse: "Every time someone asks me to take something on.",
-    addedThrough: "My Outcomes",
+    addedThrough: "Outcomes",
     periodId: null,
     status: "archived",
   },

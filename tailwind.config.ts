@@ -194,11 +194,23 @@ const config: Config = {
           from: { transform: "rotateY(90deg)" },
           to: { transform: "rotateY(0deg)" },
         },
+        // The home butterfly: wings beating (a sideways squeeze) and a slow bob at rest
+        flap: {
+          "0%, 100%": { transform: "scaleX(1)" },
+          "50%": { transform: "scaleX(0.35)" },
+        },
+        hover: {
+          from: { transform: "translateY(0)" },
+          to: { transform: "translateY(-4px)" },
+        },
       },
       animation: {
         "slide-in": "slide-in 300ms ease-in-out",
         rise: "rise 500ms ease-out",
         "card-turn": "card-turn 250ms ease-out",
+        flap: "flap 1.6s ease-in-out infinite",
+        "flap-fast": "flap 180ms ease-in-out infinite",
+        hover: "hover 1.8s ease-in-out infinite alternate",
       },
       size: {
         "icon-button": "40px",

@@ -136,9 +136,9 @@ export default function NewOutcomesPage() {
             router.push("/outcomes/build-next");
           }}
         >
-          Prioritize My Outcomes
+          Prioritize Outcomes
         </PrimaryButton>
-        <GreyCta onClick={() => setCancelling(true)}>Cancel My Game</GreyCta>
+        <GreyCta onClick={() => setCancelling(true)}>Cancel Game</GreyCta>
       </StackedButtons>
 
       {picking && (

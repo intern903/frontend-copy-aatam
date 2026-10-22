@@ -162,6 +162,8 @@ function migrateLifeCode(c: LifeCode & { lifeArea?: LifeAreaId; answers?: { when
     allLifeAreas: rest.allLifeAreas ?? false,
     howOrWhenToUse: rest.howOrWhenToUse ?? answers?.whenUse ?? "",
     periodId: rest.periodId ?? null,
+    // Sources were "My Outcomes", "My Vision"…; the app dropped the "My" from every name.
+    addedThrough: rest.addedThrough.replace(/^My /, "") as LifeCode["addedThrough"],
   };
 }
 

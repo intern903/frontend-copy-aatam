@@ -1,8 +1,8 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
-import ChatPanel from "@/components/ChatPanel";
 import { closeCompanion, useCompanion } from "@/lib/companion";
 import { cifDone, useApp } from "@/lib/store";
 import CifGate from "./CifGate";
@@ -11,6 +11,10 @@ import AppHeader from "./AppHeader";
 import AuthGuard from "./AuthGuard";
 import BottomNav from "./BottomNav";
 import { getShellConfig } from "./shell-config";
+
+// The companion (and its whole conversation script) loads the first time it is opened, not with
+// every screen. Mounting it only while open also starts each opening as a fresh conversation.
+const ChatPanel = dynamic(() => import("@/components/ChatPanel"), { ssr: false });
 
 // Holds every screen at the 393px design width, centred on wider viewports.
 // The header scrolls with the content; the bottom nav is fixed (as in Figma).
@@ -39,7 +43,9 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
         )}
         <CifGate>{children}</CifGate>
         {nav && <BottomNav active={nav.active} />}
-        <ChatPanel moduleKey={companion.moduleKey} open={companion.open && companionUnlocked} firstMessage={companion.firstMessage} onClose={closeCompanion} />
+        {companion.open && companionUnlocked && (
+          <ChatPanel moduleKey={companion.moduleKey} open firstMessage={companion.firstMessage} onClose={closeCompanion} />
+        )}
       </div>
     </AuthGuard>
   );

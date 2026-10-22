@@ -37,9 +37,9 @@ export default function FinalPage() {
       {/* My Life Stories */}
       <Image src="/images/life-purpose/connector-final-top.svg" alt="" width={111} height={84} className="absolute left-0 top-[164px] -scale-y-100" />
       <div className="absolute left-32 top-[130px]">
-        <MapNode href="/life-purpose/stories-view" icon="/icons/book-open-green.svg" label="My Life Stories" />
+        <MapNode href="/life-purpose/stories-view" icon="/icons/book-open-green.svg" label="Life Stories" />
       </div>
-      <p className="absolute left-[108px] top-[135px] font-heading text-h4 text-black">My Life Stories</p>
+      <p className="absolute left-[108px] top-[135px] font-heading text-h4 text-black">Life Stories</p>
       <p className="absolute left-[108px] top-[161px] w-[155px] text-caption text-ink-50">Situations from where you get through your life</p>
 
       {isFinal && lp.bodyFeel && (
@@ -51,9 +51,9 @@ export default function FinalPage() {
 
       {/* The statement on its photo */}
       <div className="absolute left-32 top-[285px] h-purpose-card w-content overflow-hidden rounded-24 shadow-image">
-        <Image src="/images/life-purpose/purpose-sky.png" alt="" fill sizes="329px" className="object-cover object-[50%_20%]" />
+        <Image src="/images/life-purpose/purpose-sky.webp" alt="" fill sizes="329px" className="object-cover object-[50%_20%]" />
         <div className="absolute inset-x-16 top-16">
-          <h1 className="font-heading text-h1 text-white">My Life Purpose</h1>
+          <h1 className="font-heading text-h1 text-white">Life Purpose</h1>
           <p className="mt-4 text-caption text-white">The thread through every moment when I’m most alive</p>
         </div>
         {/* Figma places this at y 173; anchored to the bottom so longer statements still fit. */}
@@ -75,17 +75,17 @@ export default function FinalPage() {
       {/* My Visions / My Values & Qualities, joined by the dashed path */}
       <Image src="/images/life-purpose/connector-final-bottom.svg" alt="" width={229} height={261} className="absolute left-[72px] top-[604px]" />
       <div className="absolute left-[64px] top-[655px]">
-        <MapNode href="/visions" icon="/icons/eye-green.svg" label="My Visions" />
+        <MapNode href="/visions" icon="/icons/eye-green.svg" label="Visions" />
       </div>
       <Link href="/visions" className="absolute right-[233px] top-[731px] whitespace-nowrap font-heading text-h4 text-black">
-        My Visions
+        Visions
       </Link>
-      <p className="absolute left-[56px] top-[757px] w-[154px] text-caption text-ink-50">My Life Purpose, expressed in each area of my life</p>
+      <p className="absolute left-[56px] top-[757px] w-[154px] text-caption text-ink-50">Life Purpose, expressed in each area of my life</p>
       <div className="absolute right-[64px] top-[828px]">
-        <MapNode href="/values/mine" icon="/icons/star-green.svg" label="My Values & Qualities" />
+        <MapNode href="/values/mine" icon="/icons/star-green.svg" label="Values & Qualities" />
       </div>
       <Link href="/values/mine" className="absolute right-[56px] top-[904px] whitespace-nowrap font-heading text-h4 text-black">
-        My Values &amp; Qualities
+        Values &amp; Qualities
       </Link>
       <p className="absolute right-[80px] top-[930px] w-[193px] text-center text-caption text-ink-50">
         “Why” behind my choices and “How” I feel when living on my values

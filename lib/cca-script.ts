@@ -109,4 +109,4 @@ export function moduleForPath(pathname: string): ModuleKey {
 
 /** Where a life code saved from the chat is tagged as coming from. */
 export const ccaSource = (key: ModuleKey) =>
-  key === "outcomes" ? "My Outcomes" : key === "wellbeing" ? "My Well-Being" : key === "visions" ? "My Vision" : "Chat";
+  key === "outcomes" ? "Outcomes" : key === "wellbeing" ? "Well-Being" : key === "visions" ? "Vision" : "Chat";

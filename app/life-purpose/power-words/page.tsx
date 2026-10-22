@@ -37,7 +37,7 @@ export default function PowerWordsPage() {
         ))}
       </div>
       <div className="mt-auto pt-40">
-        <PrimaryButton href="/life-purpose/write">Start with My Life Purpose</PrimaryButton>
+        <PrimaryButton href="/life-purpose/write">Start with Life Purpose</PrimaryButton>
       </div>
     </main>
   );

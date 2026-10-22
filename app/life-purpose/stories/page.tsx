@@ -19,7 +19,7 @@ export default function StoriesPage() {
   return (
     <main className="flex min-h-screen flex-col px-32 pb-40">
       <LpHeader />
-      <h1 className="mt-24 font-heading text-h1 text-black">My Life Stories</h1>
+      <h1 className="mt-24 font-heading text-h1 text-black">Life Stories</h1>
       {/* Dinesh's opening prompt for the stories, from the Life Purpose workflow. */}
       <p className="mt-4 text-body-small text-black">
         Think of a time in your life when you did something that left you feeling truly fulfilled or satisfied.

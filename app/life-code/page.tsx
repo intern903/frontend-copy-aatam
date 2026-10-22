@@ -18,7 +18,7 @@ import { areaColour } from "@/lib/visions";
 // The app never ranks or picks life codes: the list is in the order they were written.
 
 const PAGE = 5;
-const SOURCES: LifeCodeSource[] = ["My Outcomes", "My Well-Being", "Session", "My Vision", "Added by hand", "Chat"];
+const SOURCES: LifeCodeSource[] = ["Outcomes", "Well-Being", "Session", "Vision", "Added by hand", "Chat"];
 
 type Filters = { areas: LifeAreaId[]; types: LifeCodeType[]; sources: LifeCodeSource[]; status: LifeCode["status"][] };
 const DEFAULT: Filters = { areas: [], types: [], sources: [], status: ["active"] };
@@ -51,7 +51,7 @@ export default function LifeCodesPage() {
     <EngineFrame top={<EngineTop search />}>
       <div className="flex flex-col gap-16">
         <SectionHead
-          title="My Life Codes"
+          title="Life Codes"
           sub={hydrated ? `${total} life code${total === 1 ? "" : "s"}` : undefined}
           right={
             <span className="flex items-center gap-4">

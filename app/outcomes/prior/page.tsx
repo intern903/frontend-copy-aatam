@@ -1,13 +1,16 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useState } from "react";
 import PopUpSheet from "@/components/PopUpSheet";
 import { EmergedCodes, OutcomeStrips, ScoreRings, WellbeingStrips } from "@/components/engine/PeriodSummary";
-import TrendChart from "@/components/engine/TrendChart";
 import { Chip, DotTags, EngineFrame, EngineTop, SectionHead } from "@/components/engine/ui";
 import { useHydrated } from "@/components/values/ui";
 import { averageScore, chipDate, trend } from "@/lib/outcomes";
 import { useApp } from "@/lib/store";
+
+// The chart is the heaviest part of the screen and sits below the fold: loaded after the page.
+const TrendChart = dynamic(() => import("@/components/engine/TrendChart"), { ssr: false });
 
 // Figma "RG - Prior" and "RG - Trend View", behind the clock icon: past periods newest first
 // (date chips), the chosen one's three rings, the life codes that came out of it, its outcomes
@@ -37,7 +40,7 @@ export default function PriorPage() {
   return (
     <EngineFrame top={<EngineTop search />}>
       <div className="flex flex-col gap-16">
-        <SectionHead title="My Prior Games" />
+        <SectionHead title="Prior Games" />
         {!p ? (
           <p className="text-body-small text-ink-60">Your past periods will show here after your first close.</p>
         ) : (
@@ -75,14 +78,14 @@ export default function PriorPage() {
       </div>
 
       <div className="flex flex-col gap-16">
-        <SectionHead title="My Trend View" />
+        <SectionHead title="Trend View" />
         {points.length < 2 ? (
           <p className="text-body-small text-ink-60">The trend appears once there are two periods to compare.</p>
         ) : (
           <>
             <div className="flex gap-8">
-              <PillButton label="My Well-being" count={shown.length} onClick={() => setSheet("qualities")} />
-              <PillButton label="My Outcomes" count={Number(series.overall) + Number(series.priority)} onClick={() => setSheet("outcomes")} />
+              <PillButton label="Well-being" count={shown.length} onClick={() => setSheet("qualities")} />
+              <PillButton label="Outcomes" count={Number(series.overall) + Number(series.priority)} onClick={() => setSheet("outcomes")} />
             </div>
             <TrendChart
               points={points}

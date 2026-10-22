@@ -3,7 +3,7 @@
 // HARD RULE for this module: the app never writes a vision. It only asks and holds.
 // Nothing here suggests, completes or rewrites the client's words.
 
-import { lifeAreaImageDefaults, lifeAreas, type LifeAreaId, type Vision } from "./data";
+import { lifeAreas, type LifeAreaId, type Vision } from "./data";
 import { autoChecks } from "./lifePurpose";
 import type { AppState } from "./store";
 
@@ -79,12 +79,24 @@ export const areaName = (id: LifeAreaId) => lifeAreas.find((a) => a.id === id)?.
 
 export const isLifeArea = (id: string): id is LifeAreaId => lifeAreas.some((a) => a.id === id);
 
-// Figma colours: Career Primary/500, Health Pink/500, Family Blue/500, Personal Development
-// Yellow/500. Other areas reuse one of those images and take its colour (as in Settings).
-const COLOURS: Record<string, { solid: string; soft: string }> = {
-  "/images/life-areas/career.png": { solid: "bg-primary-500", soft: "bg-primary-100" },
-  "/images/life-areas/health.png": { solid: "bg-pink-500", soft: "bg-pink-100" },
-  "/images/life-areas/family.png": { solid: "bg-blue-500", soft: "bg-blue-100" },
-  "/images/life-areas/personal-development.png": { solid: "bg-yellow-500", soft: "bg-yellow-100" },
+// Each area's chip colour, from Figma "DT - Life Area" (1661:9899). `soft` is the same accent at 100.
+const PINK = { solid: "bg-pink-500", soft: "bg-pink-100" };
+const BLUE = { solid: "bg-blue-500", soft: "bg-blue-100" };
+const YELLOW = { solid: "bg-yellow-500", soft: "bg-yellow-100" };
+const BROWN_400 = { solid: "bg-brown-400", soft: "bg-brown-100" };
+const BROWN = { solid: "bg-brown-500", soft: "bg-brown-100" };
+const COLOURS: Record<LifeAreaId, { solid: string; soft: string }> = {
+  health: PINK,
+  money: BLUE,
+  family: YELLOW,
+  relationship: BROWN_400,
+  "personal-development": PINK,
+  friends: BLUE,
+  spirituality: YELLOW,
+  fun: BROWN,
+  career: BLUE,
+  service: PINK,
+  home: YELLOW,
+  appearance: BROWN,
 };
-export const areaColour = (id: LifeAreaId) => COLOURS[lifeAreaImageDefaults[id]];
+export const areaColour = (id: LifeAreaId) => COLOURS[id] ?? BLUE;

@@ -72,9 +72,9 @@ export default function DatesPage() {
 
       <StackedButtons>
         <PrimaryButton disabled={!valid} onClick={() => router.push("/outcomes/new")}>
-          Define My Outcomes
+          Define Outcomes
         </PrimaryButton>
-        <GreyCta onClick={() => setCancelling(true)}>Cancel My Game</GreyCta>
+        <GreyCta onClick={() => setCancelling(true)}>Cancel Game</GreyCta>
       </StackedButtons>
 
       {cancelling && (

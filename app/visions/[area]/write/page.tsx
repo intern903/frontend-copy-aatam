@@ -58,7 +58,7 @@ function Write({ area }: { area: LifeAreaId }) {
       title={name}
       step={5}
       steps={5}
-      label={`My vision for ‘${name}’`}
+      label={`Vision for ‘${name}’`}
       required
       value={text}
       onChange={setDraft}
@@ -96,7 +96,7 @@ function Write({ area }: { area: LifeAreaId }) {
       }
     >
       <Link href={`/visions/${area}/board`} className="text-center text-body-small text-primary-600 underline">
-        My vision board
+        Vision board
       </Link>
       {askDeeper && (
         <PopUpSheet title="Want to go deeper?" radius="md" closable={false} onClose={() => setAskDeeper(false)}>

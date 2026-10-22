@@ -22,12 +22,12 @@ export function PurposeBanner() {
   return (
     <Link
       href="/life-purpose/final"
-      aria-label="My Life Purpose"
+      aria-label="Life Purpose"
       className="relative block h-purpose-banner w-content shrink-0 overflow-hidden rounded-24 shadow-image"
     >
-      <Image src="/images/life-purpose/purpose-sky.png" alt="" fill sizes="329px" className="object-cover object-[50%_20%]" />
+      <Image src="/images/life-purpose/purpose-sky.webp" alt="" fill sizes="329px" className="object-cover object-[50%_20%]" />
       <div className="absolute inset-x-16 top-16">
-        <p className="font-heading text-h3 text-white">My Life Purpose</p>
+        <p className="font-heading text-h3 text-white">Life Purpose</p>
         <p className="mt-4 text-caption text-white">The thread through every moment when I’m most alive</p>
       </div>
       {/* Figma places the panel at y 87; anchored to the bottom so longer statements still fit. */}
@@ -50,14 +50,14 @@ export function PurposeBanner() {
 export function PurposeNode() {
   return (
     <div className="relative -mx-32 h-[154px] self-stretch">
-      <Link href={FOUNDATION} aria-label="My Life Purpose, back to My Foundation" className="absolute left-32 top-[82px] z-10">
+      <Link href={FOUNDATION} aria-label="Life Purpose, back to Foundation" className="absolute left-32 top-[82px] z-10">
         <span className="flex size-node items-center justify-center rounded-pill border-hairline border-dashed border-primary-600 bg-background">
           <span className="flex size-node-inner items-center justify-center rounded-pill bg-primary-100">
             <Image src="/icons/star-green.svg" alt="" width={32} height={32} />
           </span>
         </span>
       </Link>
-      <p className="absolute left-[108px] top-[87px] font-heading text-h4 text-black">My Life Purpose</p>
+      <p className="absolute left-[108px] top-[87px] font-heading text-h4 text-black">Life Purpose</p>
       <p className="absolute left-[108px] top-[113px] w-[155px] text-caption text-ink-50">The thread through every moment when I’m most alive</p>
       <Image
         src="/images/life-purpose/connector-visions.svg"

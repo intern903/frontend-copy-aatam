@@ -132,10 +132,10 @@ export const MAKE_IT_REAL = [
 
 // Story card photos, reused in turn (Figma uses one photo for every story).
 const STORY_IMAGES = [
-  "/images/life-areas/health.png",
-  "/images/life-areas/personal-development.png",
-  "/images/life-areas/family.png",
-  "/images/life-areas/career.png",
+  "/images/life-areas/health.webp",
+  "/images/life-areas/personal-development.webp",
+  "/images/life-areas/family.webp",
+  "/images/life-areas/career.webp",
 ];
 export const storyImage = (i: number) => STORY_IMAGES[i % STORY_IMAGES.length];
 export const TAG_COLOURS = ["bg-primary-500", "bg-pink-500", "bg-blue-500"];

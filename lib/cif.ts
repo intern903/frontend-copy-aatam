@@ -286,7 +286,7 @@ export function toColumns(s: CifState): CifColumns {
   out["Email"] = a.email.trim();
   out["Form version"] = "v0.1";
   out["Intake Processing Status"] = "New submission";
-  out["My Preferred Pronoun"] = filled(a.pronounOwn) ? [a.pronounOwn.trim()] : a.pronoun ? [a.pronoun] : [];
+  out["Preferred Pronoun"] = filled(a.pronounOwn) ? [a.pronounOwn.trim()] : a.pronoun ? [a.pronoun] : [];
   out["My preferred mode of communication"] = a.contact;
   out["Age range"] = a.age;
   AREAS.forEach((area) => (out["Wheel - " + area.notion] = score(area.id)));

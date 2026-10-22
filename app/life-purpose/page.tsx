@@ -79,7 +79,7 @@ function EmptyState({ next, openFaq }: { next: string; openFaq: boolean }) {
     <main className="flex min-h-screen flex-col px-32 pb-40">
       {/* Help isn't on this frame in Figma; added so the FAQ is reachable before starting. */}
       <LpHeader onHelp={() => setFaq(true)} />
-      <h1 className="mt-[207px] font-heading text-h1 text-black">Find My Power Words</h1>
+      <h1 className="mt-[207px] font-heading text-h1 text-black">Find Power Words</h1>
       <div className="mt-16 flex flex-wrap gap-x-8 gap-y-12">
         {words.map((w, i) => (
           <WordPill key={w} word={w} fill={clusterColour(i).solid} tilt={TILTS[i % TILTS.length]} />
@@ -109,7 +109,7 @@ function DraftView({ initialPopup }: { initialPopup: Popup | null }) {
       <LpHeader search />
       <div className="mt-24 flex items-start justify-between">
         <div>
-          <h1 className="font-heading text-h1 text-black">My Life Purpose</h1>
+          <h1 className="font-heading text-h1 text-black">Life Purpose</h1>
           <p className="mt-4 text-caption text-ink-brown">The thread through every moment when I’m most alive</p>
         </div>
         <HelpButton onClick={() => setPopup("faq")} />
@@ -124,7 +124,7 @@ function DraftView({ initialPopup }: { initialPopup: Popup | null }) {
       )}
 
       <div className="relative mt-20 h-draft-card overflow-hidden rounded-24 shadow-image">
-        <Image src="/images/life-purpose/purpose-sky.png" alt="" fill sizes="329px" className="object-cover object-[50%_30%]" />
+        <Image src="/images/life-purpose/purpose-sky.webp" alt="" fill sizes="329px" className="object-cover object-[50%_30%]" />
         <div className="absolute inset-16 flex flex-col justify-between">
           <p className="text-body-small text-white">Draft</p>
           <StatementGlass statement={lp.statement} />
@@ -202,9 +202,9 @@ function EditDraft({ onClose }: { onClose: () => void }) {
   const on = checkState(text, overrides);
 
   return (
-    <PopUpSheet title="My Life Purpose" radius="md" onClose={onClose}>
+    <PopUpSheet title="Life Purpose" radius="md" onClose={onClose}>
       <textarea
-        aria-label="My life purpose"
+        aria-label="Life purpose"
         rows={4}
         value={text}
         onChange={(e) => setText(e.target.value)}
@@ -243,7 +243,7 @@ function PreviousDrafts({ onClose }: { onClose: () => void }) {
     new Date(d + "T00:00:00").toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
 
   return (
-    <PopUpSheet title="My Previous Drafts" radius="md" onClose={onClose}>
+    <PopUpSheet title="Previous Drafts" radius="md" onClose={onClose}>
       {drafts.length === 0 ? (
         <p className="text-body-small text-ink-50">No earlier drafts yet.</p>
       ) : (

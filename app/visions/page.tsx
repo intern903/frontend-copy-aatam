@@ -41,8 +41,8 @@ export default function VisionsPage() {
 
       <div className="flex w-content flex-col gap-20">
         <div className="flex flex-col gap-4">
-          <h1 className="font-heading text-h3 text-black">My Vision</h1>
-          <p className="text-caption text-ink-brown">My Life Purpose, expressed in each area of my life</p>
+          <h1 className="font-heading text-h3 text-black">Vision</h1>
+          <p className="text-caption text-ink-brown">Life Purpose, expressed in each area of my life</p>
         </div>
 
         <div className="grid grid-cols-2 gap-10">
@@ -85,7 +85,7 @@ export default function VisionsPage() {
           <div className="flex flex-col gap-8">
             <p className="text-caption text-ink-brown">Choose the life areas you want a vision for. Once you finalise them, the questions open and the areas stay as they are.</p>
             <PrimaryButton disabled={picked.length === 0} onClick={finalizeVisionAreas}>
-              Finalise My Life Areas
+              Finalise Life Areas
             </PrimaryButton>
           </div>
         ) : (

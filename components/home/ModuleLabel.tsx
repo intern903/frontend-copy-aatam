@@ -23,7 +23,7 @@ export default function ModuleLabel({
   locked?: boolean;
   next?: boolean;
   size?: "caption" | "h4";
-  onClick: () => void;
+  onClick: (el: HTMLElement) => void; // the label itself, for the butterfly to fly to
 }) {
   const large = size === "h4";
   const status = locked ? undefined : progress?.status;
@@ -41,7 +41,7 @@ export default function ModuleLabel({
   return (
     <button
       type="button"
-      onClick={onClick}
+      onClick={(e) => onClick(e.currentTarget)}
       aria-label={description}
       className={`relative flex items-center gap-4 overflow-hidden whitespace-nowrap rounded-pill bg-white text-black ${
         large ? "px-12 py-4 font-heading text-h4" : "px-6 py-2 text-caption"

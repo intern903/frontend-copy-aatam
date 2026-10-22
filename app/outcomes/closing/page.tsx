@@ -56,7 +56,7 @@ export default function ClosingPage() {
           <p className="text-body text-black">{o.text}</p>
           {o.notes.length > 0 && (
             <div className="flex flex-col gap-8">
-              <p className="text-caption text-ink-75">My notes</p>
+              <p className="text-caption text-ink-75">Notes</p>
               {o.notes.map((n) => (
                 <p key={n.id} className="text-body-small text-black">
                   <span className="text-caption text-ink-60">{shortDate(n.at)} · </span>
@@ -83,13 +83,13 @@ export default function ClosingPage() {
           </div>
         </section>
         <Link
-          href={`/life-code/new?source=${encodeURIComponent("My Outcomes")}&period=${outcomes.period.id}&return=/outcomes/closing`}
+          href={`/life-code/new?source=${encodeURIComponent("Outcomes")}&period=${outcomes.period.id}&return=/outcomes/closing`}
           className="text-center text-body-small text-primary-600 underline"
         >
           Is there a life code I want to add from this?
         </Link>
         <PrimaryButton disabled={!o.closed} onClick={() => setIndex(index + 1)}>
-          {index + 1 < list.length ? "Next Outcome" : "See My Period"}
+          {index + 1 < list.length ? "Next Outcome" : "See Period"}
         </PrimaryButton>
       </div>
     </EngineFrame>
@@ -119,7 +119,7 @@ function Summary({ onBack }: { onBack: () => void }) {
             Overall is the share of outcomes done. Priority weights each by its place: #1 counts the most.
           </p>
         </div>
-        <PrimaryButton href="/wellbeing/score">Score My Well-being</PrimaryButton>
+        <PrimaryButton href="/wellbeing/score">Score Well-being</PrimaryButton>
       </div>
     </EngineFrame>
   );

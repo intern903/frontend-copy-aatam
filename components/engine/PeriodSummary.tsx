@@ -33,7 +33,7 @@ export function Labelled({ label, children }: { label: string; children: React.R
 
 export function EmergedCodes({ codes }: { codes: LifeCode[] }) {
   return (
-    <Labelled label="My life codes emerged">
+    <Labelled label="Life codes emerged">
       {codes.length === 0 ? (
         <p className="text-body-small text-ink-60">None from this period. That’s fine: not every outcome brings one.</p>
       ) : (
@@ -59,7 +59,7 @@ function Strip({ colour, children }: { colour: string; children: React.ReactNode
 
 export function OutcomeStrips({ outcomes }: { outcomes: Outcome[] }) {
   return (
-    <Labelled label="My Outcomes">
+    <Labelled label="Outcomes">
       {/* Stacked, full width: every card shows whole, with its coloured edge and outline (they used
           to scroll sideways and were cut off at the card's edge). */}
       <div className="flex flex-col gap-8">
@@ -82,7 +82,7 @@ const STRIP_TONES = ["bg-primary-500", "bg-pink-500", "bg-blue-500", "bg-yellow-
 
 export function WellbeingStrips({ scores }: { scores: Record<string, number> }) {
   return (
-    <Labelled label="My well-being">
+    <Labelled label="Well-being">
       <div className="grid grid-cols-2 gap-8">
         {Object.entries(scores).map(([quality, score], i) => (
           <Strip key={quality} colour={STRIP_TONES[i % STRIP_TONES.length]}>

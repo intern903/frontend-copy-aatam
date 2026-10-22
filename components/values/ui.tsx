@@ -63,7 +63,7 @@ export function VqFrame({ run, onBack, children }: { run: Run; onBack?: () => vo
       >
         <span className="block h-full rounded-pill bg-black transition-[width] duration-300" style={{ width: `${pct}%` }} />
       </div>
-      <p className="mt-20 text-body-small text-ink-50">My values &amp; qualities</p>
+      <p className="mt-20 text-body-small text-ink-50">Values &amp; qualities</p>
       <div className="mt-16 flex flex-col gap-16">{children}</div>
     </main>
   );

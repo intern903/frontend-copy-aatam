@@ -154,7 +154,7 @@ export default function BuildNextPage() {
     <EngineFrame top={<EngineTop />}>
       <div className="flex flex-col gap-12">
         <SectionHead
-          title="Prioritize My Outcomes"
+          title="Prioritize Outcomes"
           right={
             <CountPill>
               {draft.length} outcome{draft.length === 1 ? "" : "s"}
@@ -203,7 +203,7 @@ export default function BuildNextPage() {
 
       <StackedButtons>
         <PrimaryButton onClick={() => setSheet("book")}>Start New Game</PrimaryButton>
-        <GreyCta onClick={() => setCancelling(true)}>Cancel My Game</GreyCta>
+        <GreyCta onClick={() => setCancelling(true)}>Cancel Game</GreyCta>
       </StackedButtons>
 
       {sheet && (

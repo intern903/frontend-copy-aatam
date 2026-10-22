@@ -116,7 +116,7 @@ function Results({ run, view }: { run: Run; view: FinalView }) {
           href="/values/mine"
           className="w-full rounded-8 bg-primary-600 py-16 text-center text-button-cta text-white"
         >
-          See My Values &amp; Qualities
+          See Values &amp; Qualities
         </Link>
         <div className="flex items-center justify-between gap-8">
           <button

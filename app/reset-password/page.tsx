@@ -43,7 +43,7 @@ function ResetPassword() {
       <FloatingBack />
       <AuthCard subtitle="Reset my password" onSubmit={handleSubmit}>
         <AuthField
-          label="Enter My Password"
+          label="Enter Password"
           placeholder="Password"
           type="password"
           name="password"
@@ -55,7 +55,7 @@ function ResetPassword() {
           }}
         />
         <AuthField
-          label="Re-enter My Password"
+          label="Re-enter Password"
           placeholder="Password"
           type="password"
           name="confirm"

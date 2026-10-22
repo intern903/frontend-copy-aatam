@@ -50,7 +50,7 @@ export default function PeriodPage() {
     >
       <div className="flex flex-col gap-16">
         <SectionHead
-          title="My Current Period"
+          title="Current Period"
           right={
             <span className="flex items-center">
               {period ? (
@@ -127,7 +127,7 @@ export default function PeriodPage() {
 
       {notes.length > 0 && (
         <div className="flex flex-col gap-16">
-          <SectionHead title="My Current Game Notes" />
+          <SectionHead title="Current Game Notes" />
           <div className="flex flex-col gap-12">
             {notes.map((n) => (
               <NoteCard key={n.id} note={n} about={n.outcome} />

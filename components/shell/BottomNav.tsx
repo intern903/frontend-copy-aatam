@@ -14,12 +14,12 @@ import type { NavItem } from "./shell-config";
 // with the underline. Spaced evenly across the pill.
 
 const items: { key: NavItem; label: string; icon: string; href?: string }[] = [
-  { key: "home", label: "My Home", icon: "/icons/home.svg", href: "/" },
+  { key: "home", label: "Home", icon: "/icons/home.svg", href: "/" },
   // Figma links this to "LP - Final State"; it always opens there, finished or not.
-  { key: "foundation", label: "My Foundation", icon: "/icons/foundation.svg", href: "/life-purpose/final" },
+  { key: "foundation", label: "Foundation", icon: "/icons/foundation.svg", href: "/life-purpose/final" },
   // My Journey opens the Engine's Today tab (Figma "RG - Today").
-  { key: "journey", label: "My Journey", icon: "/icons/compass.svg", href: "/outcomes/today" },
-  { key: "companion", label: "My Companion", icon: "/icons/companion.svg" },
+  { key: "journey", label: "Journey", icon: "/icons/compass.svg", href: "/outcomes/today" },
+  { key: "companion", label: "Companion", icon: "/icons/companion.svg" },
 ];
 
 export default function BottomNav({ active }: { active: NavItem | null }) {

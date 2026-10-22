@@ -21,23 +21,23 @@ import { useHydrated } from "./ui";
 
 const KINDS = {
   values: {
-    title: "My Values",
+    title: "Values",
     caption:
       "“Why” behind my choices - guiding principles for who I want to be",
     tint: "bg-blue-100",
     arrow: "bg-blue-500",
     other: {
       href: "/values/qualities",
-      label: "My Qualities",
+      label: "Qualities",
       side: "right" as const,
     },
   },
   qualities: {
-    title: "My Qualities",
+    title: "Qualities",
     caption: "“How” I feel when living on my values",
     tint: "bg-yellow-100",
     arrow: "bg-yellow-500",
-    other: { href: "/values/mine", label: "My Values", side: "left" as const },
+    other: { href: "/values/mine", label: "Values", side: "left" as const },
   },
 };
 

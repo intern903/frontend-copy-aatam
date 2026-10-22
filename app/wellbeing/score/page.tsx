@@ -26,7 +26,7 @@ export default function ScoreWellbeingPage() {
     <EngineFrame top={<EngineTop />}>
       <div className="flex flex-col gap-12">
         <SectionHead
-          title="Score My Well-being"
+          title="Score Well-being"
           right={
             <CountPill>
               {qualities.length} qualit{qualities.length === 1 ? "y" : "ies"}
@@ -38,7 +38,7 @@ export default function ScoreWellbeingPage() {
 
       {qualities.length === 0 ? (
         <div className="flex flex-col gap-12 rounded-24 bg-white px-16 py-12">
-          <p className="text-body-small text-black">Your qualities come from My Values &amp; Qualities. Find them first, then come back to score them.</p>
+          <p className="text-body-small text-black">Your qualities come from Values &amp; Qualities. Find them first, then come back to score them.</p>
           <PrimaryButton href="/values">Find my qualities</PrimaryButton>
         </div>
       ) : (

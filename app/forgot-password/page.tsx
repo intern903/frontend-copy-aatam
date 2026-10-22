@@ -36,7 +36,7 @@ export default function ForgotPasswordPage() {
           value={email}
           onChange={setEmail}
         />
-        <AuthSubmit label="Reset My Password" />
+        <AuthSubmit label="Reset Password" />
       </AuthCard>
 
       {sent && (

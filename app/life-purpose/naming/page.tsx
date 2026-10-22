@@ -91,7 +91,7 @@ function Naming() {
             router.push("/life-purpose/power-words");
           }}
         >
-          {last ? "See My Power Words" : "Next Cluster"}
+          {last ? "See Power Words" : "Next Cluster"}
         </PrimaryButton>
       </div>
     </main>

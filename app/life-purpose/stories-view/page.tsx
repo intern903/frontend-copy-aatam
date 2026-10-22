@@ -35,9 +35,9 @@ export default function StoriesViewPage() {
 
       <Image src="/images/life-purpose/connector-stories.svg" alt="" width={123} height={151} className="absolute right-0 top-[165px] rotate-180" />
       <div className="absolute right-32 top-[130px]">
-        <MapNode href="/life-purpose/final" icon="/icons/star-green.svg" label="My Life Purpose" />
+        <MapNode href="/life-purpose/final" icon="/icons/star-green.svg" label="Life Purpose" />
       </div>
-      <p className="absolute right-[108px] top-[135px] font-heading text-h4 text-black">My Life Purpose</p>
+      <p className="absolute right-[108px] top-[135px] font-heading text-h4 text-black">Life Purpose</p>
       <p className="absolute right-[108px] top-[161px] w-[154px] text-right text-caption text-ink-50">
         The thread through every moment when I’m most alive
       </p>

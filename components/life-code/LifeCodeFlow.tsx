@@ -56,7 +56,7 @@ export default function LifeCodeFlow({
 
   const statementField = (
     <div className="flex flex-col gap-12">
-      <FieldLabel required>My Life Code</FieldLabel>
+      <FieldLabel required>Life Code</FieldLabel>
       <Answer value={statement} onChange={setStatement} placeholder="What would you tell your future self? Start with ‘I’." autoFocus={!edit} />
     </div>
   );

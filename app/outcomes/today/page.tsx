@@ -35,7 +35,7 @@ export default function TodayPage() {
       <div className="flex items-center justify-between pt-header-top">
         <BackButton />
         <Link href="/outcomes/period" className="flex items-center gap-4 rounded-24 bg-white px-16 py-8 text-body-medium text-black">
-          My Game
+          Game
           {days && (
             <>
               <span className="size-2 rounded-2 bg-ink-60" />
@@ -51,7 +51,7 @@ export default function TodayPage() {
 
       <Link href="/life-code" className="relative flex items-center justify-end gap-4 overflow-hidden rounded-24 px-16 pb-40 pt-16">
         <Image src="/images/engine/life-codes-banner.jpg" alt="" fill sizes="329px" className="object-cover object-[50%_45%]" />
-        <span className="relative font-heading text-h3 text-black">My Life Codes</span>
+        <span className="relative font-heading text-h3 text-black">Life Codes</span>
         <Image src="/icons/chevron-right-24.svg" alt="" width={24} height={24} className="relative" />
       </Link>
 
@@ -73,11 +73,11 @@ export default function TodayPage() {
       )}
 
       <div className="flex flex-col gap-16">
-        <SectionHead title="My Today’s Outcomes Tracking" />
+        <SectionHead title="Today’s Outcomes Tracking" />
         {!hydrated ? null : !period ? (
           <div className="flex flex-col gap-12 rounded-24 bg-white px-16 py-12">
             <p className="text-body-small text-black">No period yet. Set one up to start tracking.</p>
-            <PrimaryButton href="/outcomes/period">Go to My Current Period</PrimaryButton>
+            <PrimaryButton href="/outcomes/period">Go to Current Period</PrimaryButton>
           </div>
         ) : tracked.length === 0 ? (
           <p className="text-body-small text-ink-60">

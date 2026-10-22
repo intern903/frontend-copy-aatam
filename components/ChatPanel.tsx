@@ -117,14 +117,14 @@ export default function ChatPanel({
     <div
       role="dialog"
       aria-modal="true"
-      aria-label="My Companion"
+      aria-label="Companion"
       // A tap on the nav goes where it points and closes the companion (even on the same page).
       onClickCapture={(e) => (e.target as HTMLElement).closest("nav a") && onClose()}
       className="fixed inset-0 z-30 mx-auto flex max-w-frame flex-col overflow-hidden bg-background"
     >
       {/* The companion illustration, faded, bottom right */}
       <div className="pointer-events-none absolute bottom-0 right-[-194px] h-[600px] w-[555px] overflow-hidden opacity-25">
-        <Image src="/images/companion/background.png" alt="" width={1536} height={1024} className="absolute left-[-62.2%] top-0 h-full w-[162.2%] max-w-none" />
+        <Image src="/images/companion/background.webp" alt="" width={1536} height={1024} className="absolute left-[-62.2%] top-0 h-full w-[162.2%] max-w-none" />
       </div>
 
       <div className="relative flex min-h-0 flex-1 flex-col gap-20 px-32 pb-[115px]">
@@ -153,7 +153,7 @@ export default function ChatPanel({
                 action="Open Decision Tool"
                 onClick={() => send("I’m weighing a decision.")}
               />
-              <StartCard tone="yellow" title="Want to log today's result?" body="Mark today a win in my results game." action="Log My Result" onClick={() => leave("/outcomes/today")} />
+              <StartCard tone="yellow" title="Want to log today's result?" body="Mark today a win in my results game." action="Log Result" onClick={() => leave("/outcomes/today")} />
             </div>
           </div>
         ) : (
@@ -186,10 +186,10 @@ export default function ChatPanel({
                     </div>
                   ) : (
                     <div key={i} className="flex flex-col gap-4 rounded-12 bg-primary-100 p-12">
-                      <p className="text-caption text-ink-75">Saved to My Life Code</p>
+                      <p className="text-caption text-ink-75">Saved to Life Code</p>
                       <p className="text-body-small text-black">{m.statement}</p>
                       <Link href={`/life-code/${m.id}`} onClick={onClose} className="text-caption text-primary-600 underline">
-                        See it in My Life Codes
+                        See it in Life Codes
                       </Link>
                     </div>
                   ),

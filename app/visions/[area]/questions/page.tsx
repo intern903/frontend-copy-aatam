@@ -96,7 +96,7 @@ function Question({ area, q }: { area: LifeAreaId; q: number }) {
           router.push(q < 4 ? `/visions/${area}/questions?q=${q + 1}` : `/visions/${area}/write`);
         }}
       >
-        {q < 4 ? "Next" : "Do My Vision Statement"}
+        {q < 4 ? "Next" : "Do Vision Statement"}
       </PrimaryButton>
     </QuestionScreen>
   );

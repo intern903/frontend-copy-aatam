@@ -25,8 +25,8 @@ export default function WritePage() {
 
       {/* Power words over the photo; a word brightens once it's in the draft. */}
       <div className="relative mt-16 flex h-power-card flex-col items-center gap-8 overflow-hidden rounded-24 bg-white px-12 py-20">
-        <Image src="/images/life-purpose/power-words.png" alt="" fill sizes="329px" className="object-cover object-[50%_75%]" />
-        <p className="relative text-center text-body text-black">My Power Words</p>
+        <Image src="/images/life-purpose/power-words.webp" alt="" fill sizes="329px" className="object-cover object-[50%_75%]" />
+        <p className="relative text-center text-body text-black">Power Words</p>
         <div className="relative flex flex-wrap justify-center gap-8">
           {lp.powerWords.map((w, i) => (
             <span
@@ -48,10 +48,10 @@ export default function WritePage() {
         </p>
       </div>
 
-      <h1 className="mt-20 font-heading text-h2 text-black">My Draft</h1>
+      <h1 className="mt-20 font-heading text-h2 text-black">Draft</h1>
       <p className="mt-4 text-caption text-ink-80">Life purpose must pass all checklists mentioned below.</p>
       <textarea
-        aria-label="My draft life purpose"
+        aria-label="Draft life purpose"
         rows={3}
         value={text}
         onChange={(e) => setText(e.target.value)}

@@ -36,7 +36,7 @@ export function PurposeGoals() {
           className="absolute left-[103px] top-1/2 -translate-y-1/2"
         />
         <span className="relative font-heading text-h4 text-ink-80">
-          My Life Purpose
+          Life Purpose
         </span>
       </button>
       <button
@@ -103,10 +103,10 @@ function PurposePopup({ onClose }: { onClose: () => void }) {
   const { lifePurpose: lp } = useApp();
   const final = lp.status === "final";
   return (
-    <Overlay label="My Life Purpose" onClose={onClose}>
+    <Overlay label="Life Purpose" onClose={onClose}>
       <div className="relative h-purpose-card w-content overflow-hidden rounded-24 shadow-image">
         <Image
-          src="/images/life-purpose/purpose-sky.png"
+          src="/images/life-purpose/purpose-sky.webp"
           alt=""
           fill
           sizes="329px"
@@ -114,7 +114,7 @@ function PurposePopup({ onClose }: { onClose: () => void }) {
         />
         <div className="absolute inset-x-16 top-16 flex items-start justify-between gap-8">
           <div>
-            <h2 className="font-heading text-h1 text-white">My Life Purpose</h2>
+            <h2 className="font-heading text-h1 text-white">Life Purpose</h2>
             <p className="mt-4 text-caption text-white">
               The thread through every moment when I’m most alive
             </p>
@@ -157,13 +157,13 @@ function MyGoalsPopup({ onClose }: { onClose: () => void }) {
     cif.keyResults.some((g) => g.lifeArea === a.id),
   );
   return (
-    <Overlay label="My Goals" onClose={onClose}>
+    <Overlay label="Goals" onClose={onClose}>
       <div className="flex max-h-[80vh] w-content flex-col overflow-hidden rounded-12 bg-background">
         <div className="flex flex-col gap-8 px-16 pt-16">
           <div className="flex items-center justify-between">
             <span className="flex items-center gap-8">
               <Image src="/icons/target-24.svg" alt="" width={24} height={24} />
-              <h2 className="font-heading text-h3 text-black">My Goals</h2>
+              <h2 className="font-heading text-h3 text-black">Goals</h2>
             </span>
             <button
               type="button"

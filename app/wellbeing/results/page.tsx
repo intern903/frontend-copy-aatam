@@ -36,7 +36,7 @@ export default function WellbeingResultsPage() {
   return (
     <EngineFrame top={<EngineTop />}>
       <div className="flex flex-col gap-12">
-        <SectionHead title="My Scores" />
+        <SectionHead title="Scores" />
         <Stepper current={0} />
       </div>
 
@@ -55,12 +55,12 @@ export default function WellbeingResultsPage() {
         <div className="flex flex-col gap-8">
           {outcomes.period && (
             <p className="text-body-small text-black">
-              <span className="text-body-medium">My Outcomes</span> is what I did: overall, the share of outcomes done; priority,
+              <span className="text-body-medium">Outcomes</span> is what I did: overall, the share of outcomes done; priority,
               the same with #1 counting the most.
             </p>
           )}
           <p className="text-body-small text-black">
-            <span className="text-body-medium">My Well-Being</span> is how I felt while doing it: the average of my qualities
+            <span className="text-body-medium">Well-Being</span> is how I felt while doing it: the average of my qualities
             {lastAverage !== null ? `, ${lastAverage} last period` : ""}.
           </p>
         </div>

@@ -55,7 +55,7 @@ export default function SignupPage() {
           onChange={setEmail}
         />
         <AuthField
-          label="Enter My Password"
+          label="Enter Password"
           placeholder="Password"
           type="password"
           name="password"
@@ -67,7 +67,7 @@ export default function SignupPage() {
           }}
         />
         <AuthField
-          label="Re-enter My Password"
+          label="Re-enter Password"
           placeholder="Password"
           type="password"
           name="confirm"
