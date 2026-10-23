@@ -4,15 +4,15 @@ import { BOOKING_URL } from "@/lib/cif";
 
 // Figma "Frame 366" on the Homepage: 329px wide at (32, 62), over the illustration.
 // The avatar opens Settings; the phone books a call on zcal. The bell does nothing yet.
-// The greeting is warm and unhurried (BRD tone): "Good morning, Meera", by the time of day.
-function greeting(name: string) {
+// The greeting is warm and unhurried (BRD tone), by the time of day, on two lines as in Figma's
+// name + subtitle: "Good afternoon," above, the first name in H4 below.
+function partOfDay() {
   const h = new Date().getHours();
-  const part = h < 12 ? "Good morning" : h < 17 ? "Good afternoon" : "Good evening";
-  const first = name.trim().split(/\s+/)[0];
-  return first ? `${part}, ${first}` : part;
+  return h < 12 ? "Good morning" : h < 17 ? "Good afternoon" : "Good evening";
 }
 
 export default function HomeHeader({ name }: { name: string }) {
+  const first = name.trim().split(/\s+/)[0];
   return (
     <header className="absolute left-32 top-[62px] flex w-content items-center justify-between">
       <div className="flex min-w-0 flex-1 items-center gap-8">
@@ -23,11 +23,13 @@ export default function HomeHeader({ name }: { name: string }) {
         >
           <Image src="/icons/user.svg" alt="" width={32} height={32} />
         </Link>
-        {/* Set after mount: the time of day is the visitor's, not the server's. One line always:
-            Body Medium (not H4) so "Good afternoon, Rohan" fits beside the two buttons. */}
-        <p className="min-w-0 truncate font-heading text-body-medium text-white" suppressHydrationWarning>
-          {greeting(name)}
-        </p>
+        {/* Set after mount: the time of day is the visitor's, not the server's. */}
+        <div className="flex min-w-0 flex-col text-white">
+          <p className="truncate font-body text-body-medium" suppressHydrationWarning>
+            {first ? `${partOfDay()},` : partOfDay()}
+          </p>
+          {first && <p className="truncate font-heading text-h4">{first}</p>}
+        </div>
       </div>
       <div className="flex shrink-0 items-center gap-4">
         <button

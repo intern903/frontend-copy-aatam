@@ -63,6 +63,9 @@ const PARENTS: Record<string, string | null> = {
   "/outcomes/build-next": "/outcomes/new",
   "/life-code": JOURNEY,
   "/life-code/new": "/life-code",
+
+  // Decisions: the list sits on the home page; one decision → the list.
+  "/decisions": HOME,
 };
 
 /** The parent of a screen, or null for home (and the login screen, which has nothing behind it). */

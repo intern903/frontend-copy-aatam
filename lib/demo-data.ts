@@ -8,6 +8,7 @@
 // Kept apart from lib/data.ts (Meera's sample data) so either can change without touching the other.
 
 import type { CifAnswers, LifeAreaId, LifeCode, Outcome, PastPeriod, PastScores, Period, Story, Trait, Vision } from "./data";
+import type { Decision } from "./decisions";
 
 export const DEMO_FULL_EMAIL = "demo@aatam.co";
 export const DEMO_NEW_EMAIL = "new@aatam.co";
@@ -251,6 +252,62 @@ export const demoFullAccount = {
     { id: "rq-joyful", name: "Joyful", strength: "Emerging", moments: ["The good moment"], score: 5 },
   ] satisfies Trait[],
   finalQualityIds: ["rq-patient", "rq-dependable", "rq-calm", "rq-present"],
+
+  // Three decisions, one in each state (Figma "DT- Screen"): taken, scored but not yet taken, and
+  // a draft left at the Life Purpose step.
+  decisions: [
+    {
+      id: "rdec-1",
+      lifeArea: "career",
+      statement: "Should I take the head of department role next year, or stay in the classroom full time?",
+      choices: ["Take the HOD role", "Stay in the classroom"],
+      powerWords: ["Patient", "Believing"],
+      values: ["Guiding Others' Growth", "Learning", "Presence"],
+      params: [{ name: "Time with family", subs: [] }],
+      weights: { lp: 40, "lp:Patient": 20, "lp:Believing": 20, values: 45, "values:Guiding Others' Growth": 20, "values:Learning": 10, "values:Presence": 15, p0: 15 },
+      scores: [
+        { "lp:Patient": 6, "lp:Believing": 8, "values:Guiding Others' Growth": 9, "values:Learning": 7, "values:Presence": 4, p0: 3 },
+        { "lp:Patient": 9, "lp:Believing": 8, "values:Guiding Others' Growth": 7, "values:Learning": 8, "values:Presence": 9, p0: 8 },
+      ],
+      step: 9,
+      status: "decided",
+      winner: 1,
+      date: "2026-08-18",
+    },
+    {
+      id: "rdec-2",
+      lifeArea: "money",
+      statement: "Should I start weekend tuition classes, or keep my Saturdays free?",
+      choices: ["Start weekend tuition", "Keep Saturdays free"],
+      powerWords: ["Clear", "Together"],
+      values: ["Presence", "Honesty"],
+      params: [{ name: "Extra income", subs: ["Monthly amount", "Savings for the flat"] }],
+      weights: { lp: 30, "lp:Clear": 15, "lp:Together": 15, values: 40, "values:Presence": 25, "values:Honesty": 15, p0: 30, "p0:0": 20, "p0:1": 10 },
+      scores: [
+        { "lp:Clear": 8, "lp:Together": 6, "values:Presence": 3, "values:Honesty": 7, "p0:0": 9, "p0:1": 8 },
+        { "lp:Clear": 6, "lp:Together": 8, "values:Presence": 9, "values:Honesty": 7, "p0:0": 2, "p0:1": 3 },
+      ],
+      step: 9,
+      status: "completed",
+      winner: null,
+      date: "2026-09-02",
+    },
+    {
+      id: "rdec-3",
+      lifeArea: "health",
+      statement: "Should I join the morning badminton group, or the evening gym near school?",
+      choices: ["Morning badminton", "Evening gym"],
+      powerWords: [],
+      values: [],
+      params: [],
+      weights: {},
+      scores: [],
+      step: 4,
+      status: "draft",
+      winner: null,
+      date: "2026-10-12",
+    },
+  ] as Decision[],
 
   lifeCodes: [
     {

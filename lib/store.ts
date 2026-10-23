@@ -14,6 +14,7 @@ import {
   type CifColumns,
   type CifState,
 } from "./cif";
+import { blankDecision, type Decision } from "./decisions";
 import type { FinalView, Run } from "./discovery";
 import * as data from "./data";
 import { demoFullAccount, demoNewAccount } from "./demo-data";
@@ -92,6 +93,8 @@ export type AppState = {
   // when last period's numbers may show (never before, so they don't anchor the answer).
   wellbeing: { scores: Record<string, number | null>; submitted: boolean; pastScores: PastScores[] };
   lifeCodes: LifeCode[];
+  // Decisions (lib/decisions.ts), newest first.
+  decisions: Decision[];
   // Demo sets loaded on purpose from /_index (internal). Their data matches the old untouched
   // samples that are cleared on load, so they are listed here to be kept.
   demo?: string[];
@@ -187,6 +190,7 @@ function sampleState(): AppState {
     outcomes: emptyOutcomes(),
     wellbeing: { scores: {}, submitted: false, pastScores: [] },
     lifeCodes: [],
+    decisions: [],
     settings: { notifications: true, lifeAreaImages: {} },
   };
 }
@@ -807,6 +811,21 @@ export function submitWellbeing() {
 }
 
 // Life Codes — saved only once the client has written the statement and answered the questions.
+// Decisions
+const today = () => new Date().toISOString().slice(0, 10);
+/** Starts a decision as a draft at step 1 and returns its id. */
+export function createDecision() {
+  const id = newId("dec");
+  update((s) => ({ ...s, decisions: [blankDecision(id, today()), ...s.decisions] }));
+  return id;
+}
+export function updateDecision(id: string, patch: Partial<Omit<Decision, "id">>) {
+  update((s) => ({ ...s, decisions: s.decisions.map((d) => (d.id === id ? { ...d, ...patch, date: today() } : d)) }));
+}
+export function removeDecision(id: string) {
+  update((s) => ({ ...s, decisions: s.decisions.filter((d) => d.id !== id) }));
+}
+
 export type LifeCodeInput = Pick<LifeCode, "statement" | "lifeAreas" | "allLifeAreas" | "type" | "howOrWhenToUse">;
 
 export function addLifeCode(input: LifeCodeInput, source: LifeCodeSource, periodId: string | null = null) {
@@ -903,6 +922,7 @@ export function loadDemoAccount(kind: "full" | "new", token: string) {
     outcomes: { period: d.period, currentPeriod: d.currentOutcomes, draft: { end: null, outcomes: [] }, pastPeriods: d.pastPeriods },
     wellbeing: { scores: {}, submitted: false, pastScores: d.pastWellbeingScores },
     lifeCodes: d.lifeCodes,
+    decisions: d.decisions,
     // Kept on reload even where it looks like an untouched sample.
     demo: ["lifePurpose", "visions", "values", "engine"],
   }));

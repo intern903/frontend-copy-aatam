@@ -70,11 +70,14 @@ const visionStep: ShellConfig = { header: null, nav: null };
 // The Engine (My Outcomes, My Well-Being, My Life Code) draws its own back arrow and the Life
 // Purpose / My Goals buttons; every RG frame has the nav with My Journey active.
 const engine: ShellConfig = { header: null, nav: { active: "journey" } };
+// Decisions (Figma "DT" frames) draw their own back arrow; the nav shows with nothing active.
+const decisions: ShellConfig = { header: null, nav: { active: null } };
 const ENGINE = ["/outcomes", "/wellbeing", "/life-code"];
 
 export function getShellConfig(pathname: string): ShellConfig {
   if (routes[pathname]) return routes[pathname];
   if (pathname.startsWith("/visions/")) return visionStep;
   if (ENGINE.some((p) => pathname === p || pathname.startsWith(`${p}/`))) return engine;
+  if (pathname === "/decisions" || pathname.startsWith("/decisions/")) return decisions;
   return fallback;
 }

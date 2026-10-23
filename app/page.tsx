@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 import Butterfly, { type ButterflyHandle } from "@/components/home/Butterfly";
 import HomeHeader from "@/components/home/HomeHeader";
+import Landing from "@/components/home/Landing";
 import ModuleLabel from "@/components/home/ModuleLabel";
 import { openCompanion } from "@/lib/companion";
 import { getModuleProgress, type ModuleId } from "@/lib/modules";
@@ -39,6 +40,12 @@ export default function HomePage() {
     await butterfly.current?.flyTo(el);
     busy.current = false;
     then();
+  }
+
+  function openDecisions(el: HTMLElement) {
+    const locked = !cifDone(state);
+    if (!locked) router.prefetch("/decisions");
+    void reach(el, () => (locked ? setShowPopup("cif") : router.push("/decisions")));
   }
 
   function open(id: ModuleId, el: HTMLElement) {
@@ -91,6 +98,16 @@ export default function HomePage() {
         </div>
       ))}
 
+      {/* Decisions (Figma Homepage 1690:2396), above the train, with the dotted arrow down to it. */}
+      <div className="absolute" style={{ left: 225, top: 489 }}>
+        <ModuleLabel label="Decisions" locked={!cifDone(state)} onClick={(el) => openDecisions(el)} />
+      </div>
+      <div className="pointer-events-none absolute flex items-center justify-center" style={{ left: 241, top: 509, width: 17, height: 39 }}>
+        <div className="relative h-[17px] w-[39px] flex-none rotate-90 -scale-y-100">
+          <Image src="/icons/decisions-arrow.svg" alt="" width={41} height={25} className="absolute max-w-none" style={{ left: -0.75, top: -7.34 }} />
+        </div>
+      </div>
+
       {/* Arrow beside My Life Codes */}
       <Image
         src="/icons/guidelines-arrow.svg"
@@ -125,6 +142,8 @@ export default function HomePage() {
 
       {/* Rests just left of "Companion", its own label. */}
       <Butterfly ref={butterfly} left={58} top={627} />
+
+      <Landing />
 
       {showPopup && (
         <CoachPopup
